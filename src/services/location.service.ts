@@ -1,0 +1,46 @@
+import { Injectable } from '@angular/core';
+import { Countrycode, GeonameLocation } from '../models/location';
+import { HttpClient } from '@angular/common/http'
+import { map, Observable, of } from 'rxjs';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LocationService {
+
+  private locations = new Map<string, GeonameLocation[]>();
+
+  constructor(
+    private _http: HttpClient
+  ) { }
+
+  getCountryLocations(countrycode: Countrycode): Observable<GeonameLocation[]> {
+
+    let locationdata = this.locations.get(countrycode)
+    if (locationdata) {
+      return of(locationdata)
+    }
+    return this._http.get(`assets/locationfiles/${countrycode}.txt`, { responseType: 'text' }).pipe(
+      map(data => {
+        const geonames = this._convertToLocationArray(data);
+        this.locations.set(countrycode, geonames);
+        return geonames;
+    }))
+  }
+
+  private _convertToLocationArray(data: string): GeonameLocation[]  {
+    const records = data.split('\n');
+    const geonames: GeonameLocation[] = [];
+    records.map(r => {
+      const obj = r.split('\t');
+      const alternatenames = obj[3] ? obj[3].split(",") : [];
+      const geoname = new GeonameLocation(Number(obj[0]), obj[1], obj[2], alternatenames, Number(obj[4]), Number(obj[5]), (<any>Countrycode)[obj[8]], obj[18])
+      geonames.push(geoname);
+    })
+    return geonames;
+  } 
+
+
+
+}
