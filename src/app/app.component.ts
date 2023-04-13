@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { environment } from '../environments/environment';
+import { TwkAuction } from '../models/auction';
 
 
 @Component({
@@ -7,7 +9,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  environment = environment
+
   title = 'Auctionviewer';
+  shownAuctions: TwkAuction[] = [];
 
   contructor() {
 

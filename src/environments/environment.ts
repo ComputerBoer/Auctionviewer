@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://localhost:7264/',
+  TWKimageserver: 'https://img.twa.nl/',
+  TWKurl: 'https://www.troostwijkauctions.com/nl'
 };
 
 /*

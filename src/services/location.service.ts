@@ -41,6 +41,27 @@ export class LocationService {
     return geonames;
   } 
 
+  getGeoLocationByCity(city: string, countrycode: Countrycode): GeonameLocation|null {
 
+    let geonames = this.locations.get(countrycode) || [];
+
+    let geo = geonames.filter(g => g.name == city)[0];
+    if (geo) return geo;
+
+    geo = geonames.filter(g => g.alternamenames.includes(city))[0]
+    if (geo) return geo;
+
+    //removes everything between ();
+    city = city.replace(/\([^()]*\)/g, '')
+
+    geo = geonames.filter(g => g.name == city)[0];
+    if (geo) return geo;
+
+    geo = geonames.filter(g => g.alternamenames.includes(city))[0]
+    if (geo) return geo;
+
+    if (!geo) console.log('city not found:', city)
+    return null;
+  }
 
 }

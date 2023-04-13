@@ -25,7 +25,8 @@ export class TwkAuction {
     public cc: Countrycode,
     public n: string, //name
     public cd: number, //closingtime,
-    public url: string
+    public url: string,
+    public ii: number //image
   ) { 
   }
 }
