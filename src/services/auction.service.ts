@@ -54,33 +54,7 @@ export class AuctionService {
 
   getTroostwijkAuctions(countrycode: Countrycode): Observable<TwkAuction[]> {
 
-    //return from(
-    //  fetch(
-    //    `https://api.troostwijkauctions.com/sale/4/listgrouped?batchSize=99999CountryIDs=${countrycode}`, // the url you are trying to access
-    //    {
-    //      headers: {
-    //        'Content-Type': 'application/json',
-    //      },
-    //      method: 'GET', // GET, POST, PUT, DELETE
-
-    //      //mode: 'no-cors' // the most important option
-    //    }
-    //  ).then((response) => response.text()).then(console.log)
-    //);
-
-    //.pipe(
-    //  map((response: any) => {
-    //    console.log(response);
-
-    //    //const auctions = response.results.map((r: any) => [].concat.apply([] as TwkAuction[], r.items)) as TwkAuction[];
-    //    //this.TwkAuctions.concat(auctions);
-    //    //return auctions;
-    //  })
-    //  , catchError(this.handleError)
-    //);
-    //`https://api.troostwijkauctions.com/sale/4/listgrouped?batchSize=99999CountryIDs=${countrycode}`
-
-    return this._http.get(environment.apiUrl + 'Auction').pipe(
+    return this._http.get(environment.apiUrl + 'Auction\\' + countrycode).pipe(
       map((response: any) => {
         //const auctions = response.results.map((r: any) => [].concat.apply([] as TwkAuction[], r.items)) as TwkAuction[];
         const auctions = response.results.map((r: TwkAuctionday) => r.items).flat(1) as TwkAuction[];

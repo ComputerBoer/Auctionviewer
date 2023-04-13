@@ -63,8 +63,10 @@ export class MapComponent implements OnInit {
 
   addLocation(location: MapLocation) {
 
-    let lochtml = `
-`
+    let locs =''
+    location.auctions.forEach(l => { locs = locs + `<li>${l.n}</li>`})
+
+    let lochtml = `<ul>${ locs}</ul>`
 
 
     new L.Marker(
@@ -76,7 +78,7 @@ export class MapComponent implements OnInit {
         })
     }
       ).addTo(this.map)
-        .on('mouseover', event => { event.target.bindPopup('content').openPopup(); })
+      .on('mouseover', event => { event.target.bindPopup(lochtml).openPopup(); })
       .on('mouseout', event => { event.target.closePopup(); })
       .on('click', event => { this.shownAuctions.emit(location.auctions) })
     }
