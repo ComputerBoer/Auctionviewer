@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './_assets/i18n/', '.json');
 }
 
 @NgModule({

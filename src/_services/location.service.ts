@@ -21,7 +21,7 @@ export class LocationService {
     if (locationdata) {
       return of(locationdata)
     }
-    return this._http.get(`assets/locationfiles/${countrycode}.txt`, { responseType: 'text' }).pipe(
+    return this._http.get(`_assets/locationfiles/${countrycode}.txt`, { responseType: 'text' }).pipe(
       map(data => {
         const geonames = this._convertToLocationArray(data);
         this.locations.set(countrycode, geonames);
