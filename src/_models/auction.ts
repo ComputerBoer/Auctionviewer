@@ -24,9 +24,10 @@ export class TwkAuction {
     public c: string, //city
     public cc: Countrycode,
     public n: string, //name
-    public cd: number, //closingtime,
+    public cd: any, //closingtime,
     public url: string,
-    public ii: number //image
+    public ii: number, //image
+    public nol: number // number of lots
   ) { 
   }
 }

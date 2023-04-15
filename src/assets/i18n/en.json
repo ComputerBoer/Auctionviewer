@@ -1,0 +1,12 @@
+{
+
+  "common": {},
+
+  "auction": {
+    "auction": "Auction",
+    "auctions": "Auctions",
+    "closingdatetime": "datetime of closing",
+    "lots": "Lots"
+  }
+
+}

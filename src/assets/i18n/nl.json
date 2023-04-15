@@ -1,0 +1,10 @@
+{
+  "common": {},
+
+  "auction": {
+    "auction": "Veiling",
+    "auctions": "Veilingen",
+    "closingdatetime": "Sluitings tijdstip",
+    "lots":  "Kavels"
+  }
+}

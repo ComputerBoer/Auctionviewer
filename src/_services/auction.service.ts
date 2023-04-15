@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
-import { environment } from '../environments/environment';
-import { TwkAuction, TwkAuctionday, TwkPagedResult } from '../models/auction';
-import { Countrycode, GeonameLocation, MapLocation } from '../models/location';
+import { environment } from '../_environments/environment';
+import { TwkAuction, TwkAuctionday, TwkPagedResult } from '../_models/auction';
+import { Countrycode, GeonameLocation, MapLocation } from '../_models/location';
 import { LocationService } from './location.service';
 
 @Injectable({
@@ -58,6 +58,7 @@ export class AuctionService {
       map((response: any) => {
         //const auctions = response.results.map((r: any) => [].concat.apply([] as TwkAuction[], r.items)) as TwkAuction[];
         const auctions = response.results.map((r: TwkAuctionday) => r.items).flat(1) as TwkAuction[];
+        auctions.map(a => a.cd = new Date(a.cd * 1000))
         this.TwkAuctions.concat(auctions);
         return auctions;
       })

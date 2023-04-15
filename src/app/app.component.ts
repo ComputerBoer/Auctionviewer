@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { environment } from '../environments/environment';
-import { TwkAuction } from '../models/auction';
+import { environment } from '../_environments/environment';
+import { TwkAuction } from '../_models/auction';
 
 
 @Component({

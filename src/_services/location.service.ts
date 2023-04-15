@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Countrycode, GeonameLocation } from '../models/location';
+import { Countrycode, GeonameLocation } from '../_models/location';
 import { HttpClient } from '@angular/common/http'
 import { map, Observable, of } from 'rxjs';
 

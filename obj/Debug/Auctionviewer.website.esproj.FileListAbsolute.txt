@@ -1,0 +1,2 @@
+D:\Dev\CSharp\Developing\Auctionviewer\Auctionviewer\Auctionviewer.website\obj\Debug\Auctionviewer.website.esproj.SuggestedBindingRedirects.cache
+D:\Dev\CSharp\Developing\Auctionviewer\Auctionviewer\Auctionviewer.website\obj\Debug\Auctionviewer.website.esproj.CoreCompileInputs.cache

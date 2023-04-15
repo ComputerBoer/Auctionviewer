@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as L from 'leaflet';
-import { TwkAuction } from '../../models/auction';
-import { Countrycode, MapLocation } from "../../models/location";
-import { AuctionService } from '../../services/auction.service';
-import { LocationService } from '../../services/location.service';
+import { TwkAuction } from '../../_models/auction';
+import { Countrycode, MapLocation } from "../../_models/location";
+import { AuctionService } from '../../_services/auction.service';
+import { LocationService } from '../../_services/location.service';
 
 @Component({
   selector: 'app-map',
@@ -56,9 +56,6 @@ export class MapComponent implements OnInit {
         this.addLocation(loc)
       }
     })
-
-    //let loc = new MapLocation(42.3601, -71.0589, "Testtitle", "Testurl")
-    //this.addLocation(loc )
   }
 
   addLocation(location: MapLocation) {
