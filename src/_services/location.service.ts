@@ -34,8 +34,8 @@ export class LocationService {
     const geonames: GeonameLocation[] = [];
     records.map(r => {
       const obj = r.split('\t');
-      const alternatenames = obj[3] ? obj[3].split(",") : [];
-      const geoname = new GeonameLocation(Number(obj[0]), obj[1], obj[2], alternatenames, Number(obj[4]), Number(obj[5]), (<any>Countrycode)[obj[8]], obj[18])
+      const alternatenames = obj[3] ? obj[3].toLowerCase().split(",") : [];
+      const geoname = new GeonameLocation(Number(obj[0]), obj[1]?.toLowerCase(), obj[2]?.toLowerCase(), alternatenames, Number(obj[4]), Number(obj[5]), (<any>Countrycode)[obj[8]], obj[18])
       geonames.push(geoname);
     })
     return geonames;
@@ -43,13 +43,31 @@ export class LocationService {
 
   getGeoLocationByCity(city: string, countrycode: Countrycode): GeonameLocation|null {
 
+    //if (city = 'Horst')
+    //  debugger
+
+    city = city.toLowerCase();
+    let cityname = city;
+
+    if (!cityname.includes('gemeente'))
+      cityname = 'gemeente ' + cityname;
+
     let geonames = this.locations.get(countrycode) || [];
 
-    let geo = geonames.filter(g => g.name == city)[0];
+    //first tries name with 'gemeente as prefix'
+    let geo = geonames.filter(g => g.name == cityname)[0];
     if (geo) return geo;
-
+    //also tries in the alternatenames
+    geo = geonames.filter(g => g.alternamenames.includes(cityname))[0]
+    if (geo) return geo;
+    
+    //then tries name without 'gemeente as prefix'
+    geo = geonames.filter(g => g.name == city)[0];
+    if (geo) return geo;
+    //also tries in the alternatenames
     geo = geonames.filter(g => g.alternamenames.includes(city))[0]
     if (geo) return geo;
+
 
     //removes everything between ();
     city = city.replace(/\([^()]*\)/g, '')

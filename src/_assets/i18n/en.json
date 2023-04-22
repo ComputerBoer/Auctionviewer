@@ -1,6 +1,9 @@
 {
 
-  "common": {},
+  "common": {
+    "title": "Auctionviewer",
+    "location_warningmessage": "All the locations are indications based on the name in the auction. Check the location in the auction to verivy the correct location is shown."
+  },
 
   "auction": {
     "auction": "Auction",

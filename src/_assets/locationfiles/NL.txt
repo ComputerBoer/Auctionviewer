@@ -9721,6 +9721,7 @@
 2753583	Horsten	Horsten		52.94417	7.00833	P	PPL	NL		04	0037			0		6	Europe/Amsterdam	2007-06-03
 2753584	Horstbeek	Horstbeek		52.16011	5.43491	H	STM	NL		03				0		1	Europe/Amsterdam	2011-04-19
 2753585	Strand Horst	Strand Horst		52.31035	5.5593	T	BCH	NL		03	0233			0		-1	Europe/Amsterdam	2015-06-14
+0000000	Gemeente Horst	Gemeente Horst		51.45931	6.10254	A	ADM2	NL		05	1507			42487		23	Europe/Amsterdam	2023-01-30
 2753587	Horst	Horst	Horst,Khorst,Хорст	52.30833	5.58194	P	PPL	NL		03	0233			455		4	Europe/Amsterdam	2017-03-24
 2753588	Horst	Horst		51.66667	5.05	P	PPL	NL		06	0867			0		5	Europe/Amsterdam	2011-06-04
 2753589	Horst	Horst		51.65	4.93333	P	PPL	NL		06	0766			0		1	Europe/Amsterdam	2011-06-04

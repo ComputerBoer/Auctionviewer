@@ -11,9 +11,9 @@ import { TwkAuction } from '../_models/auction';
 export class AppComponent {
 
   environment = environment
-
-  title = 'Auctionviewer';
   shownAuctions: TwkAuction[] = [];
+
+  showWarning = true;
 
   contructor() {
 

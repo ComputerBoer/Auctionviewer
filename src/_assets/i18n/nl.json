@@ -1,10 +1,14 @@
 {
-  "common": {},
+
+  "common": {
+    "title": "Auctionviewer",
+    "location_warningmessage": "Alle locaties zijn indicaties gebaseerd op de naam in de veiling. Controleer locatie in de veiling of de juiste locatie wordt getoond."
+  },
 
   "auction": {
     "auction": "Veiling",
     "auctions": "Veilingen",
     "closingdatetime": "Sluitings tijdstip",
-    "lots":  "Kavels"
+    "lots": "Kavels"
   }
 }
