@@ -26,9 +26,17 @@
         </div>
         <div class="auction-info px-1">
           <strong class="d-flex"><a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.n}}</a></strong>
-          <small class="d-flex">{{auction.nol}} {{'auction.lots' |translate}}</small>
+          <ng-container *ngIf="auction.nol >0">
+
+            <small class="d-flex">{{auction.nol}} {{'auction.lots' |translate}}</small>
+          </ng-container>
+          <ng-container *ngIf="auction._startbeforetoday">
+            <small class="d-flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
+            <small class="d-flex">{{auction.sd | date: 'dd-MM-yyyy HH:mm'}}</small>
+          </ng-container>
           <small class="d-flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
           <small class="d-flex">{{auction.cd | date: 'dd-MM-yyyy HH:mm'}}</small>
+
           <small class="d-flex">{{auction.c }}</small>
         </div>
         

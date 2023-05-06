@@ -8,7 +8,8 @@
   "auction": {
     "auction": "Auction",
     "auctions": "Auctions",
-    "closingdatetime": "datetime of closing",
+    "closingdatetime": "closing date time",
+    "openingdatetime": "opening date time",
     "lots": "Lots"
   }
 

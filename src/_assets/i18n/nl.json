@@ -9,6 +9,7 @@
     "auction": "Veiling",
     "auctions": "Veilingen",
     "closingdatetime": "Sluitings tijdstip",
+    "openingdatetime": "Openings tijdstip",
     "lots": "Kavels"
   }
 }

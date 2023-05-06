@@ -16,7 +16,6 @@ export class AppComponent {
   showWarning = true;
 
   contructor() {
-
   }
 
 

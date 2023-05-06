@@ -64,14 +64,13 @@ export class MapComponent implements OnInit {
 
     let locs =''
     location.auctions.forEach(l => { locs = locs + `<li>${l.n}</li>`})
-
-    let lochtml = `<ul>${ locs}</ul>`
+    let lochtml = `<ul>${locs}</ul>`
 
     new L.Marker(
       [location.lat, location.long], {
         icon: L.divIcon({
           html: `${location.title}`,
-          className: "marker border border-primary border-3 rounded-circle bg-light fw-bold text-center",
+          className: `marker border border-primary border-3 rounded-circle bg-light fw-bold text-center`,
           iconSize: [25, 25]
         })
     }

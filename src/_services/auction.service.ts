@@ -58,7 +58,9 @@ export class AuctionService {
       map((response: any) => {
         //const auctions = response.results.map((r: any) => [].concat.apply([] as TwkAuction[], r.items)) as TwkAuction[];
         const auctions = response.results.map((r: TwkAuctionday) => r.items).flat(1) as TwkAuction[];
-        auctions.map(a => a.cd = new Date(a.cd * 1000))
+        auctions.map(a => a.cd = new Date(a.cd * 1000));
+        auctions.map(a => a.sd = new Date(a.sd * 1000));
+        auctions.map(a => a._startbeforetoday = a.sd > new Date());
         this.TwkAuctions.concat(auctions);
         return auctions;
       })
