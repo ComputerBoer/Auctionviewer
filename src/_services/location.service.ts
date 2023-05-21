@@ -43,9 +43,6 @@ export class LocationService {
 
   getGeoLocationByCity(city: string, countrycode: Countrycode): GeonameLocation|null {
 
-    //if (city = 'Horst')
-    //  debugger
-
     city = city.toLowerCase();
     let cityname = city;
 
@@ -69,8 +66,9 @@ export class LocationService {
     if (geo) return geo;
 
 
-    //removes everything between ();
+    //removes everything between () and then removes the leading and trailing spaces;
     city = city.replace(/\([^()]*\)/g, '')
+    city = city.trim();
 
     geo = geonames.filter(g => g.name == city)[0];
     if (geo) return geo;

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, forkJoin, from, map, Observable, of, throwError } from 'rxjs';
+import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
 import { environment } from '../_environments/environment';
-import { TwkAuction, TwkAuctionday, TwkPagedResult } from '../_models/auction';
+import { TwkAuction, TwkAuctionday } from '../_models/auction';
 import { Countrycode, GeonameLocation, MapLocation } from '../_models/location';
 import { LocationService } from './location.service';
 
@@ -52,9 +52,6 @@ export class AuctionService {
 
       return auctionlocations;
     }), catchError(err => throwError(err))
-
-    //const geonames = await this._locationService.getCountryLocations(countrycode).toPromise() || [];
-    //const auctions = await this.getTroostwijkAuctions(countrycode).toPromise().catch(() => { });
     )
 
   }
