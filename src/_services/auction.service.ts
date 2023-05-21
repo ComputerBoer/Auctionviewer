@@ -22,14 +22,12 @@ export class AuctionService {
   getAuctionLocations(countrycode: Countrycode): Observable<MapLocation[]> {
 
     return forkJoin({
-      geonames: this._locationService.getCountryLocations(countrycode).pipe(catchError(error => of(error))),
-      auctions: this.getTroostwijkAuctions(countrycode).pipe(catchError(error => of(error)))
+      geonames: this._locationService.getCountryLocations(countrycode).pipe(catchError(error => throwError(error))),
+      auctions: this.getTroostwijkAuctions(countrycode).pipe(catchError(error => throwError(error)))
     }).pipe(map(result => {
-
-
       let countryAuctions: TwkAuction[] = [];
       if (result.auctions)
-        countryAuctions = result.auctions.filter(a => a.cc == countrycode);
+        countryAuctions = result.auctions.filter((a: TwkAuction) => a.cc == countrycode);
 
       let uniqueCities = Array.from(new Set(countryAuctions.map(m => m.c)));
 
@@ -53,11 +51,11 @@ export class AuctionService {
       })
 
       return auctionlocations;
-    }))
+    }), catchError(err => throwError(err))
 
     //const geonames = await this._locationService.getCountryLocations(countrycode).toPromise() || [];
     //const auctions = await this.getTroostwijkAuctions(countrycode).toPromise().catch(() => { });
-
+    )
 
   }
 
