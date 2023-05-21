@@ -2,7 +2,10 @@
 
   "common": {
     "title": "Auctionviewer",
-    "location_warningmessage": "Alle locaties zijn indicaties gebaseerd op de naam in de veiling. Controleer locatie in de veiling of de juiste locatie wordt getoond."
+    "location_warningmessage": "Alle locaties zijn indicaties gebaseerd op de naam in de veiling. Controleer locatie in de veiling of de juiste locatie wordt getoond.",
+    "retrieving_auctions": "Veilingen aan het ophalen...",
+    "retrieving_auctions_error": "Er is iets fout gegaan bij het ophalen van de veilingen",
+    "try_again": "Probeer opnieuw"
   },
 
   "auction": {

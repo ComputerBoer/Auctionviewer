@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, from, map, Observable, throwError } from 'rxjs';
+import { catchError, forkJoin, from, map, Observable, of, throwError } from 'rxjs';
 import { environment } from '../_environments/environment';
 import { TwkAuction, TwkAuctionday, TwkPagedResult } from '../_models/auction';
 import { Countrycode, GeonameLocation, MapLocation } from '../_models/location';
@@ -19,36 +19,46 @@ export class AuctionService {
   ) { }
 
 
-  async getAuctionLocations(countrycode: Countrycode): Promise<MapLocation[]> {
-    const geonames = await this._locationService.getCountryLocations(countrycode).toPromise() || [];
-    const auctions = await this.getTroostwijkAuctions(countrycode).toPromise();
+  getAuctionLocations(countrycode: Countrycode): Observable<MapLocation[]> {
 
-    let countryAuctions: TwkAuction[] = [];
-    if (auctions)
-      countryAuctions = auctions.filter(a => a.cc == countrycode);
+    return forkJoin({
+      geonames: this._locationService.getCountryLocations(countrycode).pipe(catchError(error => of(error))),
+      auctions: this.getTroostwijkAuctions(countrycode).pipe(catchError(error => of(error)))
+    }).pipe(map(result => {
 
-    let uniqueCities = Array.from(new Set(countryAuctions.map(m => m.c)));
 
-    let auctionlocations: MapLocation[] = [];
+      let countryAuctions: TwkAuction[] = [];
+      if (result.auctions)
+        countryAuctions = result.auctions.filter(a => a.cc == countrycode);
 
-    uniqueCities.forEach(c => {
+      let uniqueCities = Array.from(new Set(countryAuctions.map(m => m.c)));
 
-      let geo = this._locationService.getGeoLocationByCity(c, countrycode);
-      let auctions = countryAuctions.filter(a => a.c == c);
+      let auctionlocations: MapLocation[] = [];
 
-      let loc = new MapLocation(
-        geo ? geo.latitude : 0,
-        geo ? geo.longitude : 0,
-        String(auctions.length),
-        '',
-        geo ? geo : new GeonameLocation(0, c, c, [], 0,0,countrycode, ''),
-        auctions
-      )
-      auctionlocations.push(loc);
+      uniqueCities.forEach(c => {
 
-    })
+        let geo = this._locationService.getGeoLocationByCity(c, countrycode);
+        let auctions = countryAuctions.filter(a => a.c == c);
 
-    return auctionlocations;
+        let loc = new MapLocation(
+          geo ? geo.latitude : 0,
+          geo ? geo.longitude : 0,
+          String(auctions.length),
+          '',
+          geo ? geo : new GeonameLocation(0, c, c, [], 0, 0, countrycode, ''),
+          auctions
+        )
+        auctionlocations.push(loc);
+
+      })
+
+      return auctionlocations;
+    }))
+
+    //const geonames = await this._locationService.getCountryLocations(countrycode).toPromise() || [];
+    //const auctions = await this.getTroostwijkAuctions(countrycode).toPromise().catch(() => { });
+
+
   }
 
 

@@ -34,9 +34,10 @@ export class MapComponent implements OnInit {
     tiles.addTo(this.map)
   }
 
-  constructor(
+  auctionsError = false;
+  loading = false;
 
-    private _locationService: LocationService,
+  constructor(
     private _auctionService: AuctionService,
   ) { }
 
@@ -49,14 +50,21 @@ export class MapComponent implements OnInit {
 
   }
 
-  async getLocations() {
-
-   let locations = await this._auctionService.getAuctionLocations(Countrycode.NL)
-
-    locations.forEach(loc => {
-      if (loc.geonamelocation) {
-        this.addLocation(loc)
-      }
+  getLocations() {
+    this.loading = true;
+    this.auctionsError = false;
+    this._auctionService.getAuctionLocations(Countrycode.NL).subscribe(result => {
+      this.loading = false;
+      
+      result.forEach(loc => {
+        if (loc.geonamelocation) {
+          this.addLocation(loc)
+        }
+      })
+    }, error => {
+      this.loading = false;
+      this.auctionsError = true;
+      console.log(error)
     })
   }
 

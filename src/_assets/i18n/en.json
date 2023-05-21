@@ -2,7 +2,10 @@
 
   "common": {
     "title": "Auctionviewer",
-    "location_warningmessage": "All the locations are indications based on the name in the auction. Check the location in the auction to verivy the correct location is shown."
+    "location_warningmessage": "All the locations are indications based on the name in the auction. Check the location in the auction to verivy the correct location is shown.",
+    "retrieving_auctions": "Retrieving the auctions...",
+    "retrieving_auctions_error": "There went something wrong with retrieving the auctions",
+    "try_again": "Try again"
   },
 
   "auction": {

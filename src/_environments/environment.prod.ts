@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://auctionviewerapi.azure-api.net/auctionviewer/',
+  apiUrl: 'https://auctionviewer.azurewebsites.net/',
   TWKimageserver: 'https://img.twa.nl/',
   TWKurl: 'https://www.troostwijkauctions.com/nl'
 };

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://localhost:7264/',
+  //apiUrl: 'https://auctionviewer.azurewebsites.net/',
   TWKimageserver: 'https://img.twa.nl/',
   TWKurl: 'https://www.troostwijkauctions.com/nl'
 };
