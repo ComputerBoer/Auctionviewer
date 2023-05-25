@@ -1,15 +1,23 @@
 
 <div class="row px-1 g-0 vw-100 bg-primary text-white" role="banner">
   <h1 class="col-auto px-3">{{'common.title' |translate}}</h1>
-  <div *ngIf="showWarning" class="d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
-    <div class="d-inline-block">
-      <i class="bi bi-exclamation-diamond me-2 fs-4"></i>
-      <span>{{'common.location_warningmessage' |translate}}</span>
+  <div class="d-flex col-auto">
+    <div *ngIf="showWarning" class="d-block col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-danger border-1 rounded border-danger text-light">
+      <div class="d-inline-block">
+        <i class="bi bi-exclamation-diamond me-2 fs-4"></i>
+        <span>{{'common.hosting_expensive_message' |translate}}</span>
+      </div>
     </div>
-    <div class="d-inline-block">
-      <button (click)="showWarning=false" class="btn btn-close"></button>
-    </div>
-  </div> 
+    <!--<div *ngIf="showWarning" class="d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
+      <div class="d-inline-block">
+        <i class="bi bi-exclamation-diamond me-2 fs-4"></i>
+        <span>{{'common.location_warningmessage' |translate}}</span>
+      </div>
+      <div class="d-inline-block">
+        <button (click)="showWarning=false" class="btn btn-close"></button>
+      </div>
+    </div>-->
+  </div>
 </div>
 
 <div class="row g-0 vw-100 justify-content-center" role="main">
