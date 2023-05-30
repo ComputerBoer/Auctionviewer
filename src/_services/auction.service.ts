@@ -59,7 +59,7 @@ export class AuctionService {
 
   getTroostwijkAuctions(countrycode: Countrycode): Observable<TwkAuction[]> {
 
-    return this._http.get(environment.apiUrl + 'Auction\\' + countrycode).pipe(
+    return this._http.get(environment.apiUrl + 'auction/' + countrycode).pipe(
       map((response: any) => {
         //const auctions = response.results.map((r: any) => [].concat.apply([] as TwkAuction[], r.items)) as TwkAuction[];
         const auctions = response.results.map((r: TwkAuctionday) => r.items).flat(1) as TwkAuction[];
