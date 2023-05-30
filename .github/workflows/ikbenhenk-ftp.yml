@@ -1,0 +1,44 @@
+name: Ik ben Henk ftp deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+
+    name: Deploy Angular App
+    runs-on: ubuntu-latest
+
+    #env:
+    #  SERVER: waws-prod-ln1-025.ftp.azurewebsites.windows.net
+
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v2.3.2
+
+    - name: Use Node.js 14 LTS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+      
+    - name: Install NPM Modules
+      run: npm install
+
+    - name: Build Project
+      run: npm run build
+    
+    - name: Sync Files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./dist/
+        server-dir: ${{ secrets.FTP_SERVER_DIRECTORY }}
+        dangerous-clean-slate: true
