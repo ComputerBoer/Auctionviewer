@@ -15,8 +15,25 @@ export class AppComponent {
 
   showWarning = true;
 
+  showNavigation = false;
+
   contructor() {
   }
+
+  ngOnInit() {
+    if (window.location.href !== "https://auctionviewer.ikbenhenk.nl") {
+      this.showNavigation = true;
+
+      if (window.location.href == 'http://localhost:4200')
+        return;
+
+      setTimeout(() => {
+        window.location.replace("https://auctionviewer.ikbenhenk.nl");
+      }, 5000)
+      
+    }
+  }
+
 
 
   

@@ -2,13 +2,7 @@
 <div class="row px-1 g-0 vw-100 bg-primary text-white" role="banner">
   <h1 class="col-auto px-3">{{'common.title' |translate}}</h1>
   <div class="d-flex col-auto">
-    <!--<div *ngIf="showWarning" class="d-block col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-danger border-1 rounded border-danger text-light">
-      <div class="d-inline-block">
-        <i class="bi bi-exclamation-diamond me-2 fs-4"></i>
-        <span>{{'common.hosting_expensive_message' |translate}}</span>
-      </div>
-    </div>-->
-    <div *ngIf="showWarning" class="d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
+    <div *ngIf="showWarning && !showNavigation" class="d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
       <div class="d-inline-block">
         <i class="bi bi-exclamation-diamond me-2 fs-4"></i>
         <span>{{'common.location_warningmessage' |translate}}</span>
@@ -19,7 +13,16 @@
     </div>
   </div>
 </div>
-
+<div *ngIf="showNavigation" class="auctionnavigation position-absolute w-100 row justify-content-center">
+  <div class="d-flex col-auto flex-row  col-auto border my-2 px-3 py-3 bg-warning border-1 rounded border-white">
+    <div class="d-block">
+      <i class="bi fs-2 bi-exclamation-diamond"></i>
+      <span class="ms-2 align-super">{{'common.navigating_to_ikbenhenk' |translate}}</span>
+      <small class="d-block text-center">{{'common.navigating_to_ikbenhenk_save' |translate}}</small>
+    </div>
+    
+  </div>
+</div>
 <div class="row g-0 vw-100 justify-content-center" role="main">
   <div class="row g-0 maprow">
     <div class="col-12 p-0">
@@ -47,7 +50,7 @@
 
           <small class="d-flex">{{auction.c }}</small>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -56,7 +59,6 @@
 
   <!-- Footer -->
   <footer>
-      
   </footer>
 </div>
 

@@ -7,7 +7,9 @@
     "retrieving_auctions_error": "Er is iets fout gegaan bij het ophalen van de veilingen",
     "try_again": "Probeer opnieuw",
 
-    "hosting_expensive_message": "De hosting van de api voor de veilingen werd net even te duur, ik ben druk bezig om het te verplaatsen, probeer het later nog een keer!"
+    "hosting_expensive_message": "De hosting van de api voor de veilingen werd net even te duur, ik ben druk bezig om het te verplaatsen, probeer het later nog een keer!",
+    "navigating_to_ikbenhenk": "Hé we zijn terug! Ik heb alles verhuisd naar mijn eigen domein, dus daar ga jij nu ook heen!",
+    "navigating_to_ikbenhenk_save": "Sla hem even op voor de volgende keer ;-)"
 
   },
 
