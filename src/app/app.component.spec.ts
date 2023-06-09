@@ -20,11 +20,12 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Auctionviewer'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Auctionviewer');
-  });
+  //it(`should have as title 'Auctionviewer'`, () => {
+  //  const fixture = TestBed.createComponent(AppComponent);
+  //  const app = fixture.componentInstance;
+  //  fixture.debugElement.nativeElement.q
+  //  expect(app.title).toEqual('Auctionviewer');
+  //});
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);

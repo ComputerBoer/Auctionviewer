@@ -1,14 +1,14 @@
-<div *ngIf="auctionsError" class="auctionerror position-absolute  g-0 w-100 row justify-content-center">
+<div *ngIf="auctionsError"  role="alert" class="auctionerror position-absolute  g-0 w-100 row justify-content-center">
   <div class="d-flex col-auto flex-row  col-auto border my-2 px-1 bg-danger border-1 rounded border-white text-white">
     <span class="my-auto">{{'common.retrieving_auctions_error' |translate}}</span>
-    <button class="btn btn-outline-light ms-5 my-2" (click)="getLocations()">
+    <button class="btn btn-outline-light ms-5 my-2" role="button" name="reload-auctions" (click)="getLocations()">
       <i class="bi bi-arrow-clockwise"></i>
     </button>
   </div>
 </div>
 
-<div *ngIf="loading" class="loading position-absolute g-0 w-100 row justify-content-center">
-  <div class="d-flex col-auto flex-row  col-auto border my-2 px-3 py-2 bg-info border-1 rounded border-white text-white">
+<div *ngIf="loading" role="alert" class="loading position-absolute g-0 w-100 row justify-content-center">
+  <div class="d-flex col-auto flex-row  col-auto border my-2 px-3 py-2 bg-info border-1 rounded border-white">
     <span class="my-auto">{{'common.retrieving_auctions' |translate}}</span>
   </div>
 </div>
@@ -16,6 +16,7 @@
 
 <div class="map-box position-relative w-100 h-100">
   <div class="map-container">
+    <span>{{'common.loading_map'| translate}}</span>
     <div class="map-frame">
       <div id="map"></div>
     </div>

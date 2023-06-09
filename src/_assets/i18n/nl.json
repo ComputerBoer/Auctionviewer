@@ -2,9 +2,13 @@
 
   "common": {
     "title": "Auctionviewer",
+    "meta_description": "Auctionviewer is een service waarmee Troostwijk veilingen op een kaart worden getoond zodat veilingen in de buurt gemakkelijk kunnen worden gevonden",
+
     "location_warningmessage": "Alle locaties zijn indicaties gebaseerd op de naam in de veiling. Controleer locatie in de veiling of de juiste locatie wordt getoond.",
     "retrieving_auctions": "Veilingen aan het ophalen...",
     "retrieving_auctions_error": "Er is iets fout gegaan bij het ophalen van de veilingen",
+
+    "loading_map": "Kaart aan het laden",
 
     "hosting_expensive_message": "De hosting van de api voor de veilingen werd net even te duur, ik ben druk bezig om het te verplaatsen, probeer het later nog een keer!",
     "navigating_to_ikbenhenk": "Hé we zijn terug! Ik heb alles verhuisd naar mijn eigen domein, dus daar ga jij nu ook heen!",

@@ -20,9 +20,12 @@ export class MapComponent implements OnInit {
   private centroid: L.LatLngExpression = [52.2129919, 5.2793703]
 
   private initMap(): void {
+
+    const screenwidth = window.innerWidth;
+
     this.map = L.map('map', {
       center: this.centroid,
-      zoom: 9
+      zoom: screenwidth < 576? 10 : 9
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -79,7 +82,8 @@ export class MapComponent implements OnInit {
         icon: L.divIcon({
           html: `${location.title}`,
           className: `marker border border-primary border-3 rounded-circle bg-light fw-bold text-center`,
-          iconSize: [25, 25]
+          iconSize: [25, 25],
+         
         })
     }
       ).addTo(this.map)

@@ -2,13 +2,19 @@
 
   "common": {
     "title": "Auctionviewer",
+    "meta_description": "Auctionviewer is a service which displays Troostwijk auctions on a map to easely find auctions nearby",
+
     "location_warningmessage": "All the locations are indications based on the name in the auction. Check the location in the auction to verivy the correct location is shown.",
     "retrieving_auctions": "Retrieving the auctions...",
     "retrieving_auctions_error": "There went something wrong with retrieving the auctions",
 
+    "loading_map": "Loading map",
+
     "hosting_expensive_message": "The hosting of the api for the auctions was getting to expensive, i am busy to move it, please try again later",
     "navigating_to_ikbenhenk": "Hi we're back! I have moved everything to my own domain, so that's where you are going now too!",
     "navigating_to_ikbenhenk_save": "Please save it for the next time ;-)"
+
+
   },
 
   "auction": {

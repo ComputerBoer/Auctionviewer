@@ -1,5 +1,19 @@
-.maprow{
-  height:70vh;
+.icon {
+  max-width: 35px;
+  object-fit: contain;
+  min-height: 44px;
+}
+
+h1 {
+  min-height: 44px;
+}
+
+.location-warning{
+  min-height:59px;
+}
+
+.maprow {
+  height: 70vh;
 }
 
 

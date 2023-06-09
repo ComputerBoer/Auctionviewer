@@ -9,12 +9,18 @@
   right: 0;
   bottom: 0;
   /*margin: 3px 3px;*/
+  background: lightgray;
+
+  span {
+    position: absolute;
+    inset: 50%
+  }
 }
 
-.map-frame{
+.map-frame {
   height: 100%;
 }
 
-#map{
-  height:100%
+#map {
+  height: 100%
 }
