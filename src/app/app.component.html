@@ -1,6 +1,6 @@
 
 <div class="row px-1 g-0 vw-100 bg-primary text-white" role="banner">
-  <img class="icon" src="/favicon.ico" alt="icon"/>
+  <img class="icon" width="35" height="50" src="/favicon.ico" alt="icon"/>
   <h1 class="col-auto px-3 mb-0">{{'common.title' |translate}}</h1>
     <div *ngIf="showWarning && !showNavigation" role="alert" class="location-warning d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
       <div class="d-inline-block">
@@ -8,7 +8,7 @@
         <span>{{'common.location_warningmessage' |translate}}</span>
       </div>
       <div class="d-inline-block">
-        <button (click)="showWarning=false" role="button" name="close-location-warning" class="btn btn-close"></button>
+        <button (click)="showWarning=false" role="button" aria-label="Close location warning" class="btn btn-close"></button>
       </div>
     </div>
 </div>

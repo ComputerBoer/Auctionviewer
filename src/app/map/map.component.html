@@ -1,7 +1,7 @@
 <div *ngIf="auctionsError"  role="alert" class="auctionerror position-absolute  g-0 w-100 row justify-content-center">
   <div class="d-flex col-auto flex-row  col-auto border my-2 px-1 bg-danger border-1 rounded border-white text-white">
     <span class="my-auto">{{'common.retrieving_auctions_error' |translate}}</span>
-    <button class="btn btn-outline-light ms-5 my-2" role="button" name="reload-auctions" (click)="getLocations()">
+    <button class="btn btn-outline-light ms-5 my-2" role="button" aria-label="reload auctions" (click)="getLocations()">
       <i class="bi bi-arrow-clockwise"></i>
     </button>
   </div>
