@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as L from 'leaflet';
-import { TwkAuction } from '../../_models/auction';
+import { Auction, TwkAuction } from '../../_models/auction';
 import { Countrycode, MapLocation } from "../../_models/location";
 import { AuctionService } from '../../_services/auction.service';
 import { LocationService } from '../../_services/location.service';
@@ -12,7 +12,7 @@ import { LocationService } from '../../_services/location.service';
 })
 export class MapComponent implements OnInit {
 
-  @Output() shownAuctions: EventEmitter<TwkAuction[]> = new EventEmitter()
+  @Output() shownAuctions: EventEmitter<Auction[]> = new EventEmitter()
 
   private activeElement: any;
 
@@ -60,7 +60,7 @@ export class MapComponent implements OnInit {
       this.loading = false;
       
       result.forEach(loc => {
-        if (loc.geonamelocation) {
+        if (loc) {
           this.addLocation(loc)
         }
       })
@@ -74,13 +74,13 @@ export class MapComponent implements OnInit {
   addLocation(location: MapLocation) {
 
     let locs =''
-    location.auctions.forEach(l => { locs = locs + `<li>${l.n}</li>`})
+    location.auctions.forEach(l => { locs = locs + `<li>${l.name}</li>`})
     let lochtml = `<ul>${locs}</ul>`
 
     new L.Marker(
       [location.lat, location.long], {
         icon: L.divIcon({
-          html: `${location.title}`,
+          html: `${location.numberofauctions}`,
           className: `marker border border-primary border-3 rounded-circle bg-light fw-bold text-center`,
           iconSize: [25, 25],
          

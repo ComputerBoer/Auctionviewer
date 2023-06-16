@@ -8,7 +8,7 @@
         <span>{{'common.location_warningmessage' |translate}}</span>
       </div>
       <div class="d-inline-block">
-        <button (click)="showWarning=false" role="button" aria-label="Close location warning" class="btn btn-close"></button>
+        <button (click)="closeWarning()" role="button" aria-label="Close location warning" class="btn btn-close"></button>
       </div>
     </div>
 </div>
@@ -32,22 +32,29 @@
     <div *ngFor="let auction of shownAuctions" class="auction mx-1">
       <div class=" border rounded d-flex d-flex-row h-100">
         <div class="px-1 py-1 auction-image w-25">
-          <img class=" w-100" src="{{environment.TWKimageserver + auction.ii + '?width=200&height=150'}}" />
+          <ng-container [ngSwitch]="auction.brand">
+            <a *ngSwitchCase="'TWK'" class="w-100" href="{{environment.TWKurl+ auction.url}}" target="_blank">
+              <img class=" w-100" src="{{environment.TWKimageserver + auction.imageurl + '?width=200&height=150'}}" />
+            </a>
+          </ng-container>
         </div>
         <div class="auction-info px-1">
-          <strong class="d-flex"><a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.n}}</a></strong>
-          <ng-container *ngIf="auction.nol >0">
-
-            <small class="d-flex">{{auction.nol}} {{'auction.lots' |translate}}</small>
+          <ng-container [ngSwitch]="auction.brand">
+            <strong *ngSwitchCase="'TWK'" class="d-flex"><a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
           </ng-container>
-          <ng-container *ngIf="auction._startbeforetoday">
-            <small class="d-flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
-            <small class="d-flex">{{auction.sd | date: 'dd-MM-yyyy HH:mm'}}</small>
-          </ng-container>
-          <small class="d-flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
-          <small class="d-flex">{{auction.cd | date: 'dd-MM-yyyy HH:mm'}}</small>
+            <ng-container *ngIf="auction.numberoflots >0">
 
-          <small class="d-flex">{{auction.c }}</small>
+              <small class="d-flex">{{auction.numberoflots}} {{'auction.lots' |translate}}</small>
+            </ng-container>
+            <ng-container *ngIf="auction._startbeforetoday">
+              <small class="d-flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
+              <small class="d-flex">{{auction.starttime | date: 'dd-MM-yyyy HH:mm'}}</small>
+            </ng-container>
+            <small class="d-flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
+            <small class="d-flex">{{auction.closingtime | date: 'dd-MM-yyyy HH:mm'}}</small>
+
+            <small class="d-flex justify-content-between">{{auction.city }} <img class="d-flex brand-logo" src="_assets/images/{{auction.brand}}-logo.png" alt="{{auction.brand}}" /></small>
+            
         </div>
 
       </div>

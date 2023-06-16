@@ -34,5 +34,24 @@ export class TwkAuction {
   }
 }
 
+export class Auction {
+  constructor(
+    public city: string,
+    public countrycode: Countrycode,
+    public name: string,
+    public starttime: any,
+    public closingtime: any,
+    public url: string,
+    public imageurl: string,
+    public numberoflots: number,
+    public brand: Auctionbrand,
+    public _startbeforetoday: boolean
+  ) { }
 
+}
+
+export enum Auctionbrand {
+  NONE = "NONE",
+  TWK = "TWK"
+}
 

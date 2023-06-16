@@ -1,14 +1,12 @@
-import { TwkAuction } from "./auction";
+import { Auction, TwkAuction } from "./auction";
 
 export class MapLocation{
 
   constructor(
     public lat: number,
     public long: number,
-    public title: string,
-    public url: string,
-    public geonamelocation: GeonameLocation,
-    public auctions: TwkAuction[]
+    public numberofauctions: number,
+    public auctions: Auction[]
   ) {
   }
 }
