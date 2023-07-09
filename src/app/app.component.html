@@ -14,12 +14,12 @@
     </div>
   </div>
   <div *ngIf="!showWarning && activatedRoute.children.length === 0" class="col-auto my-auto d-flex flex-row flex-wrap text-dark auctionbrands">
-    <label for="twkAuctions" class="mx-1 cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap" [ngClass]="{'notselected': !isActiveAuction('TWK')}">
+    <label for="twkAuctions" class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap" [ngClass]="{'notselected': !isActiveAuction('TWK')}">
       <input type="checkbox" class="d-none" id="twkAuctions" role="checkbox" name="twkAuctions" [checked]="isActiveAuction('TWK')" value="TWK" (change)="toggleAuction('TWK')">
       <img class="d-flex twk-brand-logo brand-logo me-1" src="_assets/images/TWK-logo.png" alt="Troostwijk" />
       Troostwijk auctions
     </label>
-    <label for="ovmAuctions" class="mx-1 cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap" [ngClass]="{'notselected': !isActiveAuction('OVM')}">
+    <label for="ovmAuctions" class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap" [ngClass]="{'notselected': !isActiveAuction('OVM')}">
       <input type="checkbox" class="d-none" id="ovmAuctions" role="checkbox" name="ovmAuctions" [checked]="isActiveAuction('OVM')" value="OVM" (change)="toggleAuction('OVM')">
       <img class="d-flex ovm-brand-logo brand-logo mt-1 me-1" src="_assets/images/OVM-logo.png" alt="Onlineveilingmeester.nl" />
       Online veilingmeester.nl
