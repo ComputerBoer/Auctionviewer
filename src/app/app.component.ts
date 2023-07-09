@@ -93,7 +93,8 @@ export class AppComponent {
   }
 
   showAuctions(auctions: Auction[]) {
-    this.shownAuctions = auctions;
+    this.shownAuctions = auctions.sort((a, b) => new Date(a.closingtime).getTime() - new Date(b.closingtime).getTime())
+
     setTimeout(() => {
       this.goToBottom()
     }, 50)
