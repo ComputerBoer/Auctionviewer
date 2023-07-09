@@ -8,7 +8,9 @@ export const environment = {
   //apiUrl: 'http://api.auctionviewer.ikbenhenk.nl/',
   //apiUrl: 'https://auctionviewer.azurewebsites.net/',
   TWKimageserver: 'https://img.twa.nl/',
-  TWKurl: 'https://www.troostwijkauctions.com/nl'
+  TWKurl: 'https://www.troostwijkauctions.com/nl',
+  OVMimageserver: 'https://onlineveilingmeester.nl/',
+  OVMurl: 'https://onlineveilingmeester.nl/'
 };
 
 /*

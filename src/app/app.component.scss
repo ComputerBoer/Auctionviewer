@@ -8,6 +8,12 @@ h1 {
   min-height: 44px;
 }
 
+.auctionbrands{
+  .notselected{
+    opacity:0.5;
+  }
+}
+
 .location-warning{
   min-height:40px;
 }
@@ -15,9 +21,12 @@ h1 {
 .maprow {
   height: 70vh;
 }
- .brand-logo{
+ .twk-brand-logo{
    height:24px;
  }
+.ovm-brand-logo {
+  height: 18px;
+}
 
 .auction-image{
   min-width:100px;

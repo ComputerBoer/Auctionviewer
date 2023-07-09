@@ -2,7 +2,19 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import "~leaflet/dist/leaflet.css";
 
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
 /* You can add global styles to this file, and also import other style files */
 .align-super{
   vertical-align:super;
+}
+.cursor-pointer{
+  cursor:pointer
+}
+
+.bg-light-grey{
+  background:#ddd;
 }

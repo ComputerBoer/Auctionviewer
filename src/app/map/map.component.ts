@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as L from 'leaflet';
-import { Auction, TwkAuction } from '../../_models/auction';
+import { Auction, Auctionbrand, TwkAuction } from '../../_models/auction';
 import { Countrycode, MapLocation } from "../../_models/location";
 import { AuctionService } from '../../_services/auction.service';
 import { LocationService } from '../../_services/location.service';
@@ -14,6 +14,12 @@ export class MapComponent implements OnInit {
 
   @Output() shownAuctions: EventEmitter<Auction[]> = new EventEmitter()
 
+  private _auctionbrands: Auctionbrand[] = [];
+  @Input() set auctionbrands(auctionbrands: Auctionbrand[] | null) {
+    if (!auctionbrands) auctionbrands = [];
+    this._auctionbrands = auctionbrands;
+    this.showLocations(this.Auctionlocations);
+  }
   private activeElement: any;
 
   private map: any;
@@ -37,6 +43,9 @@ export class MapComponent implements OnInit {
     tiles.addTo(this.map)
   }
 
+  private Auctionlocations: MapLocation[]=[]
+  private _markers: any[] = [];
+
   auctionsError = false;
   loading = false;
 
@@ -48,9 +57,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.initMap();
-
     this.getLocations();
-
   }
 
   getLocations() {
@@ -58,16 +65,34 @@ export class MapComponent implements OnInit {
     this.auctionsError = false;
     this._auctionService.getAuctionLocations(Countrycode.NL).subscribe(result => {
       this.loading = false;
+      this.Auctionlocations = result;
+      this.showLocations(result);
       
-      result.forEach(loc => {
-        if (loc) {
-          this.addLocation(loc)
-        }
-      })
     }, error => {
       this.loading = false;
       this.auctionsError = true;
       console.log(error)
+    })
+  }
+
+  showLocations(maplocations: MapLocation[]) {
+
+    this._markers.forEach(m => {
+      if (this.map.hasLayer(m))
+        this.map.removeLayer(m)
+    })
+
+
+    maplocations.forEach(loc => {
+
+      const auctions = loc.auctions.filter(f => this._auctionbrands.includes(f.brand))
+      if (loc && auctions.length > 0) {
+        console.log
+        loc = JSON.parse(JSON.stringify(loc))
+        loc.numberofauctions = auctions.length
+        loc.auctions = auctions
+        this.addLocation(loc)
+      }
     })
   }
 
@@ -77,11 +102,11 @@ export class MapComponent implements OnInit {
     location.auctions.forEach(l => { locs = locs + `<li>${l.name}</li>`})
     let lochtml = `<ul>${locs}</ul>`
 
-    new L.Marker(
+    let marker = new L.Marker(
       [location.lat, location.long], {
         icon: L.divIcon({
           html: `${location.numberofauctions}`,
-          className: `marker border border-primary border-3 rounded-circle bg-light fw-bold text-center`,
+          className: `marker border ${location.auctions[0].city === 'Nederland' ? 'border-success': 'border-primary'} border-3 rounded-circle bg-light fw-bold text-center`,
           iconSize: [25, 25],
          
         })
@@ -91,15 +116,17 @@ export class MapComponent implements OnInit {
       .on('mouseout', event => { event.target.closePopup(); })
 
       .on('click', event => {
-        if (this.activeElement)
+        if (this.activeElement && this.activeElement._icon)
           this.activeElement._icon.classList.remove('border-warning');
 
         this.activeElement = event.target;
         event.target._icon.classList.add('border-warning');
         this.shownAuctions.emit(location.auctions);
       })
-    }
 
+    this._markers.push(marker);
+    }
+    
 
 
 }

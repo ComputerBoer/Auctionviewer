@@ -9,6 +9,8 @@ import { LocationService } from '../_services/location.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+import { InfoComponent } from './info/info.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './_assets/i18n/', '.json');
@@ -17,12 +19,15 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

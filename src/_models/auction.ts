@@ -52,6 +52,7 @@ export class Auction {
 
 export enum Auctionbrand {
   NONE = "NONE",
-  TWK = "TWK"
+  TWK = "TWK",
+  OVM = "OVM"
 }
 
