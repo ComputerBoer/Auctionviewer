@@ -7,7 +7,7 @@ export const environment = {
   apiUrl: 'http://localhost:5000/',
   //apiUrl: 'http://api.auctionviewer.ikbenhenk.nl/',
   //apiUrl: 'https://auctionviewer.azurewebsites.net/',
-  TWKimageserver: 'https://img.twa.nl/',
+  TWKimageserver: '', //https://img.twa.nl/
   TWKurl: 'https://www.troostwijkauctions.com/nl',
   OVMimageserver: 'https://onlineveilingmeester.nl/',
   OVMurl: 'https://onlineveilingmeester.nl/'

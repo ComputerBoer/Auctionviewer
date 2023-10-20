@@ -50,7 +50,7 @@
           <div class="px-1 py-1 auction-image w-25">
             <ng-container [ngSwitch]="auction.brand">
               <a *ngSwitchCase="'TWK'" class="w-100" href="{{environment.TWKurl+ auction.url}}" target="_blank">
-                <img class=" w-100" src="{{environment.TWKimageserver + auction.imageurl + '?width=200&height=150'}}" />
+                <img class=" w-100" src="{{environment.TWKimageserver + auction.imageurl + ''}}" />
               </a>
               <a *ngSwitchCase="'OVM'" class="w-100" href="{{environment.OVMurl+ auction.url}}" target="_blank">
                 <img class=" w-100" src="{{environment.OVMimageserver + auction.imageurl}}" />
