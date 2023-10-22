@@ -67,10 +67,10 @@
             </ng-container>
             <ng-container *ngIf="auction._startbeforetoday">
               <small class="d-flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
-              <small class="d-flex">{{auction.starttime | date: 'dd-MM-yyyy HH:mm'}}</small>
+              <small class="d-flex">{{auction.starttime | customdate}}</small>
             </ng-container>
             <small class="d-flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
-            <small class="d-flex">{{auction.closingtime | date: 'dd-MM-yyyy HH:mm'}}</small>
+            <small class="d-flex">{{auction.closingtime | customdate}}</small>
 
             <small class="d-flex justify-content-between">{{auction.city }} <img class="d-flex {{auction.brand | lowercase}}-brand-logo brand-logo" src="_assets/images/{{auction.brand}}-logo.png" alt="{{auction.brand}}" /></small>
 

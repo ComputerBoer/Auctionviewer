@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { InfoComponent } from './info/info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomDatePipe } from './pipes/customDate.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './_assets/i18n/', '.json');
@@ -20,7 +21,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     MapComponent,
-    InfoComponent
+    InfoComponent,
+    CustomDatePipe
   ],
   imports: [
     BrowserModule,

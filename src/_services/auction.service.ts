@@ -25,10 +25,10 @@ export class AuctionService {
       map((response: any) => {
         response as MapLocation[];
 
-        response.map((l: MapLocation) => { l.auctions.map(a => a.closingtime = this.convertDate(a.closingtime)) })
-        response.map((l: MapLocation) => { l.auctions.map(a => a.starttime = this.convertDate(a.starttime)) })
+        //response.map((l: MapLocation) => { l.auctions.map(a => a.closingtime = this.convertDate(a.closingtime)) })
+        //response.map((l: MapLocation) => { l.auctions.map(a => a.starttime = this.convertDate(a.starttime)) })
         response.map((l: MapLocation) => { l.auctions.map(a => a._startbeforetoday = a.starttime > new Date()) })
-        console.log(response);
+        //console.log(response);
         return response;
       })
       , catchError(this.handleError)
