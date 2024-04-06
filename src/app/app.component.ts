@@ -43,15 +43,6 @@ export class AppComponent {
 
     this.showWarning = !JSON.parse( localStorage.getItem('closed_warning') || 'false')
 
-    if (!window.location.href.startsWith('http://localhost:4200')) {
-      if (!window.location.href.startsWith("https://auctionviewer.ikbenhenk.nl")) {
-        this.showNavigation = true;
-        setTimeout(() => {
-          window.location.replace("https://auctionviewer.ikbenhenk.nl");
-        }, 5000)
-      }
-    }
-
     this._translate.get('common.meta_description').subscribe(res => {
       this._meta.addTag({
         name: 'description',

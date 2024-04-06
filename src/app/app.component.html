@@ -27,16 +27,7 @@
 
   </div>
 </div>
-<div *ngIf="showNavigation" class="auctionnavigation position-absolute w-100 row justify-content-center">
-  <div class="d-flex col-auto flex-row  col-auto border my-2 px-3 py-3 bg-warning border-1 rounded border-white">
-    <div class="d-block">
-      <i class="bi fs-2 bi-exclamation-diamond"></i>
-      <span class="ms-2 align-super">{{'common.navigating_to_ikbenhenk' |translate}}</span>
-      <small class="d-block text-center">{{'common.navigating_to_ikbenhenk_save' |translate}}</small>
-    </div>
 
-  </div>
-</div>
 <div class="row g-0 vw-100 justify-content-center bg-light-grey" role="main">
   <ng-container *ngIf="activatedRoute.children.length === 0">
     <div class="row g-0 maprow">
