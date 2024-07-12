@@ -1,4 +1,4 @@
-name: Ik ben Henk ftp deploy
+name: Ik ben Henk angular ftp deploy
 
 on:
   push:
