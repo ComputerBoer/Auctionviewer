@@ -5,13 +5,15 @@
 }
 
 h1 {
-  min-height: 44px;
+  margin-bottom: 0;
 }
 
-.auctionbrands{
-  .notselected{
+.auctionbrand{
+  height: 28px;
+}
+.auctionbrand.notselected{
     opacity:0.5;
-  }
+  
 }
 
 .location-warning{
@@ -19,24 +21,11 @@ h1 {
 }
 
 .maprow {
-  height: 70vh;
-}
- .twk-brand-logo{
-   height:24px;
- }
-.ovm-brand-logo {
-  height: 18px;
+  height: calc(100vh - 72px);
 }
 
-.auction-image{
-  min-width:100px;
-  max-width: 250px;
-}
-.auction-info{
-  min-width:150px
-}
-.auctionnavigation{
-  z-index:6000;
+.auctions-list{
+  z-index: 6000;
 }
 
 footer {

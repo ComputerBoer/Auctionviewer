@@ -1,10 +1,13 @@
-
-<div class="row px-1 g-0 vw-100 bg-primary text-white" role="banner">
+<div class="px-1 g-0 vw-100 bg-primary  d-flex flex-row flex-wrap" role="banner">
   <a href="/" class="col-auto px-3 mb-0 d-flex flex-row">
     <img class="icon" width="35" height="50" src="/favicon.ico" alt="icon" />
-    <h1 class="text-white text-decoration-none">{{'common.title' |translate}}</h1>
+    <div class="ms-1 text-white">
+      <h1 class=" text-decoration-none">{{'common.title' |translate}}</h1>
+      <small><i>A Ik ben Henk website</i></small>
+    </div>
   </a>
-  <div *ngIf="showWarning && !showNavigation" role="alert" class="location-warning d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
+  <div *ngIf="showWarning && !showNavigation" role="alert"
+    class="location-warning d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
     <div class="d-inline-block">
       <i class="bi bi-exclamation-diamond me-2 fs-4"></i>
       <span>{{'common.location_warningmessage' |translate}}</span>
@@ -13,63 +16,33 @@
       <button (click)="closeWarning()" role="button" aria-label="Close location warning" class="btn btn-close"></button>
     </div>
   </div>
-  <div *ngIf="!showWarning && activatedRoute.children.length === 0" class="col-auto my-auto d-flex flex-row flex-wrap text-dark auctionbrands">
-    <label for="twkAuctions" class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap" [ngClass]="{'notselected': !isActiveAuction('TWK')}">
-      <input type="checkbox" class="d-none" id="twkAuctions" role="checkbox" name="twkAuctions" [checked]="isActiveAuction('TWK')" value="TWK" (change)="toggleAuction('TWK')">
+  <div class="d-flex flex-row flex-wrap my-auto" *ngIf="!showWarning && activatedRoute.children.length === 0">
+    <label for="twkAuctions"
+      class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap text-dark auctionbrand"
+      [ngClass]="{'notselected': !isActiveAuction('TWK')}">
+      <input type="checkbox" class="d-none" id="twkAuctions" role="checkbox" name="twkAuctions"
+        [checked]="isActiveAuction('TWK')" value="TWK" (change)="toggleAuction('TWK')">
       <img class="d-flex twk-brand-logo brand-logo me-1" src="_assets/images/TWK-logo.png" alt="Troostwijk" />
       Troostwijk auctions
     </label>
-    <label for="ovmAuctions" class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap" [ngClass]="{'notselected': !isActiveAuction('OVM')}">
-      <input type="checkbox" class="d-none" id="ovmAuctions" role="checkbox" name="ovmAuctions" [checked]="isActiveAuction('OVM')" value="OVM" (change)="toggleAuction('OVM')">
-      <img class="d-flex ovm-brand-logo brand-logo mt-1 me-1" src="_assets/images/OVM-logo.png" alt="Onlineveilingmeester.nl" />
+    <label for="ovmAuctions"
+      class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap text-dark auctionbrand"
+      [ngClass]="{'notselected': !isActiveAuction('OVM')}">
+      <input type="checkbox" class="d-none" id="ovmAuctions" role="checkbox" name="ovmAuctions"
+        [checked]="isActiveAuction('OVM')" value="OVM" (change)="toggleAuction('OVM')">
+      <img class="d-flex ovm-brand-logo brand-logo mt-1 me-1" src="_assets/images/OVM-logo.png"
+        alt="Onlineveilingmeester.nl" />
       Online veilingmeester.nl
     </label>
 
   </div>
 </div>
 
-<div class="row g-0 vw-100 justify-content-center bg-light-grey" role="main">
+<div class="row g-0 vw-100 justify-content-center bg-light-grey maprow" role="main">
   <ng-container *ngIf="activatedRoute.children.length === 0">
-    <div class="row g-0 maprow">
-      <div class="col-12 p-0">
-        <app-map [auctionbrands]="auctionBrands.value" (shownAuctions)="showAuctions( $event)" ></app-map>
-      </div>
-    </div>
-    <div class="d-flex flex-row overflow-scroll mt-1">
-      <div *ngFor="let auction of shownAuctions" class="auction mx-1">
-        <div class="rounded d-flex d-flex-row h-100 bg-white">
-          <div class="px-1 py-1 auction-image w-25">
-            <ng-container [ngSwitch]="auction.brand">
-              <a *ngSwitchCase="'TWK'" class="w-100" href="{{environment.TWKurl+ auction.url}}" target="_blank">
-                <img class=" w-100" src="{{environment.TWKimageserver + auction.imageurl + ''}}" />
-              </a>
-              <a *ngSwitchCase="'OVM'" class="w-100" href="{{environment.OVMurl+ auction.url}}" target="_blank">
-                <img class=" w-100" src="{{environment.OVMimageserver + auction.imageurl}}" />
-              </a>
-            </ng-container>
-          </div>
-          <div class="auction-info px-1 d-flex flex-column justify-content-between">
-            <ng-container [ngSwitch]="auction.brand">
-              <strong *ngSwitchCase="'TWK'" class="d-flex"><a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
-              <strong *ngSwitchCase="'OVM'" class="d-flex"><a href="{{environment.OVMurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
-            </ng-container>
-            <ng-container *ngIf="auction.numberoflots >0">
-              <small class="d-flex">{{auction.numberoflots}} {{'auction.lots' |translate}}</small>
-            </ng-container>
-            <ng-container *ngIf="auction._startbeforetoday">
-              <small class="d-flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
-              <small class="d-flex">{{auction.starttime | customdate}}</small>
-            </ng-container>
-            <small class="d-flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
-            <small class="d-flex">{{auction.closingtime | customdate}}</small>
+    <app-auctions [shownAuctions]="shownAuctions" class="position-fixed bottom-0 auctions-list mb-2"></app-auctions>
+    <app-map [auctionbrands]="auctionBrands.value" (shownAuctions)="showAuctions( $event)" class="h-100"></app-map>
 
-            <small class="d-flex justify-content-between">{{auction.city }} <img class="d-flex {{auction.brand | lowercase}}-brand-logo brand-logo" src="_assets/images/{{auction.brand}}-logo.png" alt="{{auction.brand}}" /></small>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
   </ng-container>
   <router-outlet></router-outlet>
 

@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5000/',
-  //apiUrl: 'http://api.auctionviewer.ikbenhenk.nl/',
-  //apiUrl: 'https://auctionviewer.azurewebsites.net/',
+  // apiUrl: 'http://localhost:5000/',
+  apiUrl: 'http://api.auctionviewer.ikbenhenk.nl/',
   TWKimageserver: '', //https://img.twa.nl/
   TWKurl: 'https://www.troostwijkauctions.com/nl',
   OVMimageserver: 'https://onlineveilingmeester.nl/',

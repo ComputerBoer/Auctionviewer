@@ -17,6 +17,8 @@ export class AppComponent {
   environment = environment
   shownAuctions: Auction[] = [];
 
+  viewedAuctions: string[] = [];
+
   showWarning = true;
 
   showNavigation = false;
@@ -91,6 +93,8 @@ export class AppComponent {
     }, 50)
     
   }
+
+
 
   goToBottom() {
     window.scrollTo(0, document.body.scrollHeight);

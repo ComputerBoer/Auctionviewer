@@ -1,0 +1,35 @@
+<div class="d-flex flex-row overflow-scroll mt-1">
+    <div *ngFor="let auction of shownAuctions" class="auction mx-1">
+      <div class="rounded d-flex d-flex-row h-100 bg-white">
+        <div class="px-1 py-1 auction-image w-25">
+          <ng-container [ngSwitch]="auction.brand">
+            <a *ngSwitchCase="'TWK'" class="w-100" href="{{environment.TWKurl+ auction.url}}" target="_blank">
+              <img class=" w-100" src="{{environment.TWKimageserver + auction.imageurl + ''}}" />
+            </a>
+            <a *ngSwitchCase="'OVM'" class="w-100" href="{{environment.OVMurl+ auction.url}}" target="_blank">
+              <img class=" w-100" src="{{environment.OVMimageserver + auction.imageurl}}" />
+            </a>
+          </ng-container>
+        </div>
+        <div class="auction-info px-1 d-flex flex-column justify-content-between">
+          <ng-container [ngSwitch]="auction.brand">
+            <strong *ngSwitchCase="'TWK'" class="d-flex"><a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
+            <strong *ngSwitchCase="'OVM'" class="d-flex"><a href="{{environment.OVMurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
+          </ng-container>
+          <ng-container *ngIf="auction.numberoflots >0">
+            <small class="d-flex">{{auction.numberoflots}} {{'auction.lots' |translate}}</small>
+          </ng-container>
+          <ng-container *ngIf="auction._startbeforetoday">
+            <small class="d-flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
+            <small class="d-flex">{{auction.starttime | customdate}}</small>
+          </ng-container>
+          <small class="d-flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
+          <small class="d-flex">{{auction.closingtime | customdate}}</small>
+
+          <small class="d-flex justify-content-between">{{auction.city }} <img class="d-flex {{auction.brand | lowercase}}-brand-logo brand-logo" src="_assets/images/{{auction.brand}}-logo.png" alt="{{auction.brand}}" /></small>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
