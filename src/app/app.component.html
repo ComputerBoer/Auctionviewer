@@ -1,56 +1,51 @@
-<div class="px-1 g-0 vw-100 bg-primary  d-flex flex-row flex-wrap" role="banner">
-  <a href="/" class="col-auto px-3 mb-0 d-flex flex-row">
-    <img class="icon" width="35" height="50" src="/favicon.ico" alt="icon" />
-    <div class="ms-1 text-white">
-      <h1 class=" text-decoration-none">{{'common.title' |translate}}</h1>
-      <a href="https://www.ikbenhenk.nl" class="text-white text-underline"><small><i>A Ik ben Henk website</i></small></a>
+<div class="vh-100">
+  <div class="px-1 g-0 vw-100 bg-primary position-fixed top-0 z-100  d-flex flex-row flex-wrap" role="banner">
+    <a href="/" class="col-auto px-3 mb-0 d-flex flex-row">
+      <img class="icon" width="35" height="50" src="/favicon.ico" alt="icon" />
+      <div class="ms-1 text-white">
+        <h1 class=" text-decoration-none">{{'common.title' |translate}}</h1>
+        <a href="https://www.ikbenhenk.nl" class="text-white text-underline"><small><i>A Ik ben Henk website</i></small></a>
+      </div>
+    </a>
+    <div *ngIf="showWarning && !showNavigation" role="alert" class="location-warning mw-100 d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
+      <div class="d-inline-block">
+        <i class="bi bi-exclamation-diamond me-2 fs-4"></i>
+        <span>{{'common.location_warningmessage' |translate}}</span> 
+      </div>
+      <div class="d-inline-block">
+        <button (click)="closeWarning()" role="button" aria-label="Close location warning" class="btn btn-close"></button>
+      </div>
     </div>
-  </a>
-  <div *ngIf="showWarning && !showNavigation" role="alert"
-    class="location-warning d-flex col-auto flex-row flex-nowrap col-auto border my-2 px-1 bg-warning border-1 rounded border-warning text-dark">
-    <div class="d-inline-block">
-      <i class="bi bi-exclamation-diamond me-2 fs-4"></i>
-      <span>{{'common.location_warningmessage' |translate}}</span>
-    </div>
-    <div class="d-inline-block">
-      <button (click)="closeWarning()" role="button" aria-label="Close location warning" class="btn btn-close"></button>
+    <div class="d-flex flex-row flex-wrap my-auto" *ngIf="!showWarning && activatedRoute.children.length === 0">
+      <label for="twkAuctions" class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap text-dark auctionbrand"
+        [ngClass]="{'notselected': !isActiveAuction('TWK')}">
+        <input type="checkbox" class="d-none" id="twkAuctions" role="checkbox" name="twkAuctions" [checked]="isActiveAuction('TWK')" value="TWK" (change)="toggleAuction('TWK')">
+        <img class="d-flex twk-brand-logo brand-logo me-1" src="_assets/images/TWK-logo.png" alt="Troostwijk" />
+        <span class="d-none d-md-block">Troostwijk auctions</span>
+      </label>
+      <label for="ovmAuctions" class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap text-dark auctionbrand"
+        [ngClass]="{'notselected': !isActiveAuction('OVM')}">
+        <input type="checkbox" class="d-none" id="ovmAuctions" role="checkbox" name="ovmAuctions" [checked]="isActiveAuction('OVM')" value="OVM" (change)="toggleAuction('OVM')">
+        <img class="d-flex ovm-brand-logo brand-logo mt-1 me-1" src="_assets/images/OVM-logo.png" alt="Onlineveilingmeester.nl" />
+        <span class="d-none d-md-block">Online veilingmeester.nl</span>
+      </label>
+
     </div>
   </div>
-  <div class="d-flex flex-row flex-wrap my-auto" *ngIf="!showWarning && activatedRoute.children.length === 0">
-    <label for="twkAuctions"
-      class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap text-dark auctionbrand"
-      [ngClass]="{'notselected': !isActiveAuction('TWK')}">
-      <input type="checkbox" class="d-none" id="twkAuctions" role="checkbox" name="twkAuctions"
-        [checked]="isActiveAuction('TWK')" value="TWK" (change)="toggleAuction('TWK')">
-      <img class="d-flex twk-brand-logo brand-logo me-1" src="_assets/images/TWK-logo.png" alt="Troostwijk" />
-      Troostwijk auctions
-    </label>
-    <label for="ovmAuctions"
-      class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap text-dark auctionbrand"
-      [ngClass]="{'notselected': !isActiveAuction('OVM')}">
-      <input type="checkbox" class="d-none" id="ovmAuctions" role="checkbox" name="ovmAuctions"
-        [checked]="isActiveAuction('OVM')" value="OVM" (change)="toggleAuction('OVM')">
-      <img class="d-flex ovm-brand-logo brand-logo mt-1 me-1" src="_assets/images/OVM-logo.png"
-        alt="Onlineveilingmeester.nl" />
-      Online veilingmeester.nl
-    </label>
 
+  <div class="row g-0 vw-100 justify-content-center bg-light-grey maprow" role="main">
+    <ng-container *ngIf="activatedRoute.children.length === 0">
+      <app-auctions [shownAuctions]="shownAuctions" class="position-fixed bottom-0 z-100 auctions-list mb-2"></app-auctions>
+      <app-map [auctionbrands]="auctionBrands.value" (shownAuctions)="showAuctions( $event)" class="h-100 z-50"></app-map>
+
+    </ng-container>
+    <router-outlet></router-outlet>
+
+    <!-- Footer -->
+    <footer>
+    </footer>
   </div>
 </div>
-
-<div class="row g-0 vw-100 justify-content-center bg-light-grey maprow" role="main">
-  <ng-container *ngIf="activatedRoute.children.length === 0">
-    <app-auctions [shownAuctions]="shownAuctions" class="position-fixed bottom-0 auctions-list mb-2"></app-auctions>
-    <app-map [auctionbrands]="auctionBrands.value" (shownAuctions)="showAuctions( $event)" class="h-100"></app-map>
-
-  </ng-container>
-  <router-outlet></router-outlet>
-
-  <!-- Footer -->
-  <footer>
-  </footer>
-</div>
-
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->

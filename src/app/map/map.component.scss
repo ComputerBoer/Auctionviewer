@@ -21,6 +21,11 @@
   }
 }
 
+.map-box{
+  height: calc(100vh - 55px);
+  top:55px;
+}
+
 .map-frame {
   height: 100%;
 }
