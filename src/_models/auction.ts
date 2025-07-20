@@ -1,39 +1,5 @@
 import { Countrycode } from "./location";
 
-export class TwkPagedResult{
-
-  constructor(
-    public closedOnly: boolean,
-    public id: number,
-    public offset: number,
-    public results: TwkAuctionday[]
-  ) {
-  }
-}
-
-export class TwkAuctionday {
-  constructor(
-    public dateTime: Date,
-    public items: TwkAuction[]
-
-  ) { }
-}
-
-export class TwkAuction {
-  constructor(
-    public c: string, //city
-    public cc: Countrycode,
-    public n: string, //name
-    public cd: any, //closingtime,
-    public sd: any, //starttime,
-    public url: string,
-    public ii: number, //image
-    public nol: number, // number of lots
-    public _startbeforetoday: boolean
-  ) { 
-  }
-}
-
 export class Auction {
   constructor(
     public city: string,
@@ -45,6 +11,7 @@ export class Auction {
     public imageurl: string,
     public numberoflots: number,
     public brand: Auctionbrand,
+    public multiplelocations: boolean,
     public _startbeforetoday: boolean
   ) { }
 
@@ -53,6 +20,7 @@ export class Auction {
 export enum Auctionbrand {
   NONE = "NONE",
   TWK = "TWK",
-  OVM = "OVM"
+  OVM = "OVM",
+  AP = "AP"
 }
 

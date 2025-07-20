@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as L from 'leaflet';
-import { Auction, Auctionbrand, TwkAuction } from '../../_models/auction';
+import { Auction, Auctionbrand } from '../../_models/auction';
 import { Countrycode, MapLocation } from "../../_models/location";
 import { AuctionService } from '../../_services/auction.service';
-import { LocationService } from '../../_services/location.service';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
 @Component({

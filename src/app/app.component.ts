@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { environment } from '../_environments/environment';
-import { Auction, Auctionbrand, TwkAuction } from '../_models/auction';
+import { Auction, Auctionbrand } from '../_models/auction';
 import { Meta } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',

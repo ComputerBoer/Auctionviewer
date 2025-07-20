@@ -29,6 +29,12 @@
         <img class="d-flex ovm-brand-logo brand-logo mt-1 me-1" src="_assets/images/OVM-logo.png" alt="Onlineveilingmeester.nl" />
         <span class="d-none d-md-block">Online veilingmeester.nl</span>
       </label>
+      <label for="apAuctions" class="mx-1 text-nowrap cursor-pointer rounded-pill bg-white my-1 px-2 pb-1 d-flex flex-row flex-nowrap text-dark auctionbrand"
+        [ngClass]="{'notselected': !isActiveAuction('AP')}">
+        <input type="checkbox" class="d-none" id="apAuctions" role="checkbox" name="apAuctions" [checked]="isActiveAuction('AP')" value="AP" (change)="toggleAuction('AP')">
+        <img class="d-flex AP-brand-logo brand-logo mt-1 me-1" src="_assets/images/AP-logo.png" alt="Auctionport" />
+        <span class="d-none d-md-block">Auctionport</span>
+      </label>
 
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Auction, TwkAuction } from "./auction";
+import { Auction } from "./auction";
 
 export class MapLocation{
 

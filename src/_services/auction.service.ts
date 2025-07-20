@@ -1,17 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from '../_environments/environment';
-import { TwkAuction, TwkAuctionday } from '../_models/auction';
-import { Countrycode, GeonameLocation, MapLocation } from '../_models/location';
+import { Countrycode, MapLocation } from '../_models/location';
 import { LocationService } from './location.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuctionService {
-
-  TwkAuctions: TwkAuction[] = [];
 
   constructor(
     private _http: HttpClient,
