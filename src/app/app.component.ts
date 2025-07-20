@@ -38,7 +38,7 @@ export class AppComponent {
   ngOnInit() {
 
     let b = localStorage.getItem('shown_brands')
-    let brands = [Auctionbrand.TWK, Auctionbrand.OVM]
+    let brands = [Auctionbrand.TWK, Auctionbrand.OVM, Auctionbrand.AP]
     if (b) { brands = JSON.parse(b) as Auctionbrand[] }
 
     this.auctionBrands.setValue(brands)
