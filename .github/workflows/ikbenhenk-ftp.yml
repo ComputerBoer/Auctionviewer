@@ -5,7 +5,7 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [ synchronize, closed]
     branches:
       - main
 
@@ -36,7 +36,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist/
+        local-dir: ./dist/browser/
         server-dir: ${{ vars.FTP_ANGULAR_DIRECTORY }}
         dangerous-clean-slate: true
 
