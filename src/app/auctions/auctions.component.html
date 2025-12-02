@@ -1,7 +1,7 @@
-<div class="d-flex flex-row overflow-scroll mt-1">
+<div class="flex flex-row overflow-scroll mt-1">
   @for (auction of shownAuctions; track auction) {
     <div class="auction mx-1">
-      <div class="rounded d-flex d-flex-row h-100 bg-white">
+      <div class="rounded-lg flex flex-row h-full bg-white">
         <div class="px-1 py-1 auction-image w-25">
           <!-- <a class="w-100" href="{{environment[auction.brand + 'url'] + auction.url}}" target="_blank">
           <img class=" w-100" src="{{environment[auction.brand + 'imageserver'] + auction.imageurl + ''}}" />
@@ -24,37 +24,37 @@
           }
         }
       </div>
-      <div class="auction-info px-1 d-flex flex-column justify-content-between">
+      <div class="auction-info px-1 flex flex-col justify-between">
         @switch (auction.brand) {
-          @case ('TWK') {
-            <strong class="d-flex"><a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
+        @case ('TWK') {
+            <strong class="flex"><a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
           }
           @case ('OVM') {
-            <strong class="d-flex"><a href="{{environment.OVMurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
+            <strong class="flex"><a href="{{environment.OVMurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
           }
           @case ('AP') {
-            <strong class="d-flex"><a href="{{environment.APurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
+            <strong class="flex"><a href="{{environment.APurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
           }
         }
         @if (auction.numberoflots >0) {
-          <small class="d-flex">{{auction.numberoflots}} {{'auction.lots' |translate}}</small>
+          <small class="flex">{{auction.numberoflots}} {{'auction.lots' |translate}}</small>
         }
         @if (auction._startbeforetoday) {
-          <small class="d-flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
-          <small class="d-flex">{{auction.starttime | customdate}}</small>
+          <small class="flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
+          <small class="flex">{{auction.starttime | customdate}}</small>
         }
-        <small class="d-flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
-        <small class="d-flex">{{auction.closingtime | customdate}}</small>
-        <small class="d-flex flex-wrap justify-content-between">
+        <small class="flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
+        <small class="flex">{{auction.closingtime | customdate}}</small>
+        <small class="flex flex-wrap justify-between">
           {{auction.city }}
-          <span class="d-flex justify-content-start gap-2">
+          <span class="flex justify-start gap-2">
             @if (auction.multiplelocations) {
-              <i class="d-flex justify-content-start gap-1">
-                <img class="d-flex mb-1" src="_assets/images/geo-multiple-fill.svg" alt="multiplelocations" />
+              <i class="flex justify-start gap-1">
+                <img class="flex mb-1" src="_assets/images/geo-multiple-fill.svg" alt="multiplelocations" />
                 {{'auction.multiplelocations' | translate}}
               </i>
             }
-            <img class="d-flex {{auction.brand | lowercase}}-brand-logo brand-logo" src="_assets/images/{{auction.brand}}-logo.png" alt="{{auction.brand}}" />
+            <img class="flex {{auction.brand | lowercase}}-brand-logo brand-logo" src="_assets/images/{{auction.brand}}-logo.png" alt="{{auction.brand}}" />
           </span>
         </small>
       </div>

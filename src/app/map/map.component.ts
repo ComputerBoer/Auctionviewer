@@ -121,9 +121,9 @@ export class MapComponent implements OnInit {
         icon: L.divIcon({
           html: `${location.numberofauctions}`,
           className: `
-            marker border border-3 rounded-circle fw-bold text-center
-            ${location.auctions[0].city === 'Nederland' ? 'border-success': 'border-primary'}
-            ${location.auctions.map(m=> m.url).every(ai=> this.visitedMaplocationUrls.value.includes(ai)) ? 'bg-primary text-white': 'bg-light'}
+            marker border-3 fw-bold text-center
+            ${location.auctions[0].city === 'Nederland' ? 'border-primary bg-primary text-white': 'border-blue rounded-full'}
+            ${location.auctions.map(m=> m.url).every(ai=> this.visitedMaplocationUrls.value.includes(ai)) ? 'bg-primary text-white': 'bg-white'}
           `,
           iconSize: [25, 25],
          
@@ -135,14 +135,14 @@ export class MapComponent implements OnInit {
 
       .on('click', event => {
         if (this.activeElement && this.activeElement._icon){
-          this.activeElement._icon.classList.remove('border-warning');
-          this.activeElement._icon.classList.remove('bg-light');
+          this.activeElement._icon.classList.remove('border-blue');
+          this.activeElement._icon.classList.remove('bg-white');
           this.activeElement._icon.classList.add('bg-primary')
           this.activeElement._icon.classList.add('text-white')
         }
 
         this.activeElement = event.target;
-        event.target._icon.classList.add('border-warning');
+        event.target._icon.classList.add('border-primary');
         this.shownAuctions.emit(location.auctions);
         this.addVisitedLocationUrls(location.auctions);
 
