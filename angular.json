@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Auctionviewer:build:production"
+              "buildTarget": "Auctionviewer:build:production"
             },
             "development": {
-              "browserTarget": "Auctionviewer:build:development"
+              "buildTarget": "Auctionviewer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Auctionviewer:build"
+            "buildTarget": "Auctionviewer:build"
           }
         },
         "test": {
