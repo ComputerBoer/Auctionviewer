@@ -3,7 +3,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
     name: 'customdate',
-    standalone: false
 })
 
 export class CustomDatePipe implements PipeTransform {
