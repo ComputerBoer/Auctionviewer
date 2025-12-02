@@ -2,15 +2,19 @@ import { Component } from '@angular/core';
 import { environment } from '../_environments/environment';
 import { Auction, Auctionbrand } from '../_models/auction';
 import { Meta } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { NgClass } from '@angular/common';
+import { AuctionsComponent } from './auctions/auctions.component';
+import { MapComponent } from './map/map.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports:[TranslateModule,NgClass, AuctionsComponent, MapComponent, RouterModule]
 })
 export class AppComponent {
 

@@ -4,11 +4,13 @@ import { Auction, Auctionbrand } from '../../_models/auction';
 import { Countrycode, MapLocation } from "../../_models/location";
 import { AuctionService } from '../../_services/auction.service';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.scss'],
+    imports:[TranslateModule,]
 })
 export class MapComponent implements OnInit {
 
