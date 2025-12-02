@@ -6,9 +6,10 @@ import { AuctionService } from '../../_services/auction.service';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.scss'],
+    standalone: false
 })
 export class MapComponent implements OnInit {
 

@@ -3,9 +3,10 @@ import { environment } from 'src/_environments/environment';
 import { Auction } from 'src/_models/auction';
 
 @Component({
-  selector: 'app-auctions',
-  templateUrl: './auctions.component.html',
-  styleUrls: ['./auctions.component.scss']
+    selector: 'app-auctions',
+    templateUrl: './auctions.component.html',
+    styleUrls: ['./auctions.component.scss'],
+    standalone: false
 })
 export class AuctionsComponent implements OnInit {
   environment = environment
