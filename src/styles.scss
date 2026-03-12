@@ -6,22 +6,11 @@
 
 @theme {
   --color-blue: rgb(3,59,85) ;// '#033B55';
+  --color-blue-light: rgb(14,101,163) ;// '#0E65A3';
   --color-primary: rgb(218,103,0) ;// '#da6700';
+  --color-primary-light: rgb(235,206,180) ;// '#ebceb4';
 
 }
-  // 'grey': '#f0f0f0',
-
-  //           'primary': '#da6700', 
-  //           'primary-light': '#ebceb4',
-  //           'blue': '#033B55',
-  //           'blue-light': '#0E65A3',
-
-  //           'darkmode-white':'#323232',
-  //           'darkmode-black': '#c4c4c4',
-  //           'darkmode-grey': '#1F1F21',
-
-  //           'darkmode-blue':  '#2582c5'
-
 
 html, body {
   height: 100%;
