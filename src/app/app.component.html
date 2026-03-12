@@ -1,5 +1,5 @@
 <div class="vh-100">
-  <div class="px-1 g-0 w-full bg-blue z-1000 fixed top-0 flex flex-row flex-wrap" role="banner">
+  <div class="px-1 w-full bg-blue z-[5000] fixed top-0 flex flex-row flex-wrap" role="banner">
     <a href="/" class="col-auto px-3 mb-0 flex flex-row">
       <img class="icon" width="35" height="50" src="/favicon.ico" alt="icon" />
       <div class="ms-1 text-white">
@@ -42,7 +42,7 @@
     }
   </div>
 
-  <div class="row g-0 vw-100 justify-content-center bg-light-grey maprow" role="main">
+  <div class="g-0 vw-100 justify-content-center bg-light-grey maprow" role="main">
     @if (activatedRoute.children.length === 0) {
       <app-auctions [shownAuctions]="shownAuctions()" class="fixed bottom-0 z-1000 auctions-list mb-2"></app-auctions>
       <app-map [auctionbrands]="auctionBrands.value" (shownAuctions)="showAuctions( $event)" class="h-100 z-50"></app-map>

@@ -5,7 +5,8 @@
     "closingdatetime": "closing date time",
     "lots": "Lots",
     "multiplelocations": "Multiple locations",
-    "openingdatetime": "opening date time"
+    "openingdatetime": "opening date time",
+    "viewed": "Viewed"
   },
   "common": {
     "hosting_expensive_message": "The hosting of the api for the auctions was getting to expensive, i am busy to move it, please try again later",

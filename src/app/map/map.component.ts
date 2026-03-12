@@ -116,15 +116,44 @@ export class MapComponent implements OnInit {
     location.auctions.forEach(l => { locs = locs + `<li>${l.name}</li>`})
     let lochtml = `<ul>${locs}</ul>`
 
+    let bgColor = '';
+    let borderColor = ''
+    let textColor = ''
+    let shape = ''
+    
+    if(location.auctions[0].city === 'Nederland'){
+      borderColor='border-primary'
+      textColor = 'text-blue'
+      shape = 'rounded-0'
+    }else{
+      if(location !== this.activeLocation && this.hasOverlap(location.auctions, this.activeLocation?.auctions)){
+        borderColor = 'border-blue-light'
+      } 
+    }
+
+    if(location.auctions.map(m=> m.url).every(ai=> this.visitedMaplocationUrls.value.includes(ai))){
+      if(!bgColor) bgColor = 'bg-primary-light'
+      if(!borderColor) borderColor = 'border-primary'
+    }
+    if(this.activeLocation?.lat === location.lat && this.activeLocation.long === location.long){
+      bgColor= 'bg-blue'
+      borderColor = 'border-blue'
+      textColor = 'text-white'
+    }
+
+
     let marker = new L.Marker(
       [location.lat, location.long], {
         icon: L.divIcon({
-          html: `${location.numberofauctions} ${this.hasOverlap(location.auctions, this.activeLocation?.auctions)}`,
+          html: `${location.numberofauctions}`,
           className: `
             marker border-3 fw-bold text-center transition-colors duration-300 ease-out
-            ${location.auctions[0].city === 'Nederland' ? 'border-primary bg-white !text-blue': 'border-blue rounded-full'}
-            ${location.auctions[0].city === 'Nederland'? '':location.auctions.map(m=> m.url).every(ai=> this.visitedMaplocationUrls.value.includes(ai)) ? 'bg-primary-light border-primary': 'bg-white'}
-            ${location !== this.activeLocation && this.hasOverlap(location.auctions, this.activeLocation?.auctions)? 'border-blue-light': '' }
+            ${borderColor ? borderColor: 'border-blue'}
+            ${bgColor ? bgColor: 'bg-white'}
+            ${textColor ? textColor: ''}
+            ${shape ? shape: 'rounded-full'}
+            
+            
           `,
           iconSize: [25, 25],
          
@@ -139,10 +168,10 @@ export class MapComponent implements OnInit {
           this.activeElement._icon.classList.remove('bg-white');
           this.activeElement._icon.classList.add('bg-primary')
           this.activeElement._icon.classList.add('text-white')
+          this.activeElement._icon.classList.add('shadow-lg')
         }
 
         this.activeElement = event.target;
-        event.target._icon.classList.add('border-primary');
 
         this.activeLocation = location;
         this.shownAuctions.emit(location.auctions);
@@ -158,7 +187,6 @@ export class MapComponent implements OnInit {
 
   hasOverlap(locationAuctions: Auction[], activeAuctions?: Auction[]):boolean{
     if(!activeAuctions) return false;
-    console.log(locationAuctions.map(a=> a.url).filter(url => activeAuctions.map(m=> m.url).includes(url)).length>0)
     return locationAuctions.map(a=> a.url).filter(url => activeAuctions.map(m=> m.url).includes(url)).length>0
 
   }
