@@ -1,47 +1,51 @@
-<div class="flex flex-row overflow-scroll mt-1">
+<div class="flex flex-row overflow-auto mt-1 w-[100vw]">
   @for (auction of shownAuctions; track auction) {
-    <div class="auction mx-1">
-      <div class="rounded-lg flex flex-row h-full bg-white">
-        <div class="px-1 py-1 auction-image w-25">
-          <!-- <a class="w-100" href="{{environment[auction.brand + 'url'] + auction.url}}" target="_blank">
+  <div class="auction mx-1">
+    <div class="rounded-lg flex flex-row h-full bg-white">
+      <div class="px-1 py-1 auction-image w-25">
+        <!-- <a class="w-100" href="{{environment[auction.brand + 'url'] + auction.url}}" target="_blank">
           <img class=" w-100" src="{{environment[auction.brand + 'imageserver'] + auction.imageurl + ''}}" />
         </a> -->
         @switch (auction.brand) {
-          @case ('TWK') {
-            <a class="w-100" href="{{environment.TWKurl+ auction.url}}" target="_blank">
-              <img class=" w-100" src="{{environment.TWKimageserver + auction.imageurl + ''}}" />
-            </a>
-          }
-          @case ('OVM') {
-            <a class="w-100" href="{{environment.OVMurl+ auction.url}}" target="_blank">
-              <img class=" w-100" src="{{environment.OVMimageserver + auction.imageurl}}" />
-            </a>
-          }
-          @case ('AP') {
-            <a class="w-100" href="{{environment.APurl+ auction.url}}" target="_blank">
-              <img class=" w-100" src="{{environment.APimageserver + auction.imageurl}}" />
-            </a>
-          }
+        @case ('TWK') {
+        <a class="w-100" (click)="setAuctionVisited(auction.url)" href="{{environment.TWKurl+ auction.url}}" target="_blank">
+          <img class=" w-100" src="{{environment.TWKimageserver + auction.imageurl + ''}}" />
+        </a>
+        }
+        @case ('OVM') {
+        <a class="w-100" (click)="setAuctionVisited(auction.url)" href="{{environment.OVMurl+ auction.url}}" target="_blank">
+          <img class=" w-100" src="{{environment.OVMimageserver + auction.imageurl}}" />
+        </a>
+        }
+        @case ('AP') {
+        <a class="w-100" (click)="setAuctionVisited(auction.url)" href="{{environment.APurl+ auction.url}}" target="_blank">
+          <img class=" w-100" src="{{environment.APimageserver + auction.imageurl}}" />
+        </a>
+        }
         }
       </div>
       <div class="auction-info px-1 flex flex-col justify-between">
-        @switch (auction.brand) {
-        @case ('TWK') {
-            <strong class="flex"><a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
+        <strong (click)="setAuctionVisited(auction.url)" class="flex flex-row gap-1">
+
+          @switch (auction.brand) {
+          @case ('TWK') {
+          <a href="{{environment.TWKurl+ auction.url}}" target="_blank">{{auction.name}}</a>
           }
           @case ('OVM') {
-            <strong class="flex"><a href="{{environment.OVMurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
+          <a href="{{environment.OVMurl+ auction.url}}" target="_blank">{{auction.name}}</a>
           }
           @case ('AP') {
-            <strong class="flex"><a href="{{environment.APurl+ auction.url}}" target="_blank">{{auction.name}}</a></strong>
+          <a href="{{environment.APurl+ auction.url}}" target="_blank">{{auction.name}}</a>
           }
-        }
+          }
+          @if(visitedAuctions.value.includes(auction.url)){<i title="{{'auction.viewed' | translate}}" class="bi bi-check2-all text-primary "></i>}
+        </strong>
         @if (auction.numberoflots >0) {
-          <small class="flex">{{auction.numberoflots}} {{'auction.lots' |translate}}</small>
+        <small class="flex">{{auction.numberoflots}} {{'auction.lots' |translate}}</small>
         }
         @if (auction._startbeforetoday) {
-          <small class="flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
-          <small class="flex">{{auction.starttime | customdate}}</small>
+        <small class="flex"><strong class="small">{{'auction.openingdatetime' |translate}}</strong></small>
+        <small class="flex">{{auction.starttime | customdate}}</small>
         }
         <small class="flex"><strong class="small">{{'auction.closingdatetime' |translate}}</strong></small>
         <small class="flex">{{auction.closingtime | customdate}}</small>
@@ -49,10 +53,10 @@
           {{auction.city }}
           <span class="flex justify-start gap-2">
             @if (auction.multiplelocations) {
-              <i class="flex justify-start gap-1">
-                <img class="flex mb-1" src="_assets/images/geo-multiple-fill.svg" alt="multiplelocations" />
-                {{'auction.multiplelocations' | translate}}
-              </i>
+            <i class="flex justify-start gap-1">
+              <img class="flex mb-1" src="_assets/images/geo-multiple-fill.svg" alt="multiplelocations" />
+              {{'auction.multiplelocations' | translate}}
+            </i>
             }
             <img class="flex {{auction.brand | lowercase}}-brand-logo brand-logo" src="_assets/images/{{auction.brand}}-logo.png" alt="{{auction.brand}}" />
           </span>
@@ -60,5 +64,5 @@
       </div>
     </div>
   </div>
-}
+  }
 </div>

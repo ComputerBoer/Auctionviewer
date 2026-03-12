@@ -5,7 +5,8 @@
     "closingdatetime": "Sluitings tijdstip",
     "lots": "Kavels",
     "multiplelocations": "Meerdere locaties",
-    "openingdatetime": "Openings tijdstip"
+    "openingdatetime": "Openings tijdstip",
+    "viewed": "Bekeken"
   },
   "common": {
     "hosting_expensive_message": "De hosting van de api voor de veilingen werd net even te duur, ik ben druk bezig om het te verplaatsen, probeer het later nog een keer!",
