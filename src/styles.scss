@@ -1,6 +1,16 @@
-@import "bootstrap/dist/css/bootstrap.css";
+// @import "tailwindcss/index.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 @import "leaflet/dist/leaflet.css";
+
+@import "tailwindcss";
+
+@theme {
+  --color-blue: rgb(3,59,85) ;// '#033B55';
+  --color-blue-light: rgb(14,101,163) ;// '#0E65A3';
+  --color-primary: rgb(218,103,0) ;// '#da6700';
+  --color-primary-light: rgb(235,206,180) ;// '#ebceb4';
+
+}
 
 html, body {
   height: 100%;
@@ -10,9 +20,6 @@ html, body {
 /* You can add global styles to this file, and also import other style files */
 .align-super{
   vertical-align:super;
-}
-.cursor-pointer{
-  cursor:pointer
 }
 
 .bg-light-grey{
@@ -27,11 +34,4 @@ html, body {
 }
 .ap-brand-logo {
  height: 18px;
-}
-
-.z-100{
-  z-index: 100;
-}
-.z-50{
-  z-index: 50;
 }

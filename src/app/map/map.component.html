@@ -1,17 +1,17 @@
-@if (auctionsError) {
-  <div  role="alert" class="auctionerror position-absolute px-2  g-0 top-50 w-100 row justify-content-center">
-    <div class="d-flex col-auto flex-row  col-auto border my-2 px-1 bg-danger border-1 rounded border-white text-white">
+@if (auctionsError()) {
+  <div  role="alert" class="auctionerror relative top-[60px] px-2 w-full flex justify-center">
+    <div class="d-flex col-auto flex-row  col-auto border my-2 px-1 bg-primary border-1 rounded border-white text-white">
       <span class="my-auto">{{'common.retrieving_auctions_error' |translate}}</span>
-      <button class="btn btn-outline-light ms-5 my-2" role="button" aria-label="reload auctions" (click)="getLocations()">
+      <button class="btn btn-outline-light ms-5 my-2 cursor-pointer" role="button" aria-label="reload auctions" (click)="getLocations()">
         <i class="bi bi-arrow-clockwise"></i>
       </button>
     </div>
   </div>
 }
 
-@if (loading) {
-  <div role="alert" class="loading position-absolute g-0 top-50 w-100 row justify-content-center">
-    <div class="d-flex col-auto flex-row  col-auto border my-2 px-3 py-2 bg-info border-1 rounded border-white">
+@if (loading()) {
+  <div role="alert" class="loading fixed top-1/2 h-full w-full flex justify-center">
+    <div class="d-flex col-auto flex-row top col-auto max-h-[40px] border mx-auto px-3 py-2 bg-blue text-white border-1 rounded border-white">
       <span class="my-auto">{{'common.retrieving_auctions' |translate}}</span>
     </div>
   </div>

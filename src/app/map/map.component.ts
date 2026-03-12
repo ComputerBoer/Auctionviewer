@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
 import * as L from 'leaflet';
 import { Auction, Auctionbrand } from '../../_models/auction';
 import { Countrycode, MapLocation } from "../../_models/location";
@@ -27,7 +27,22 @@ export class MapComponent implements OnInit {
   private map: any;
   private centroid: L.LatLngExpression = [52.2129919, 5.2793703]
 
-  private initMap(): void {
+  private Auctionlocations: MapLocation[]=[]
+  private _markers: any[] = [];
+
+  auctionsError = signal(false);
+  loading = signal(false);
+
+  activeLocation: MapLocation | undefined;
+
+  visitedMaplocationUrls: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  private _unsubscribe = new Subject<void>();
+
+  constructor(
+    private _auctionService: AuctionService,
+  ) { }
+
+   private initMap(): void {
 
     const screenwidth = window.innerWidth;
 
@@ -44,21 +59,6 @@ export class MapComponent implements OnInit {
 
     tiles.addTo(this.map)
   }
-
-  private Auctionlocations: MapLocation[]=[]
-  private _markers: any[] = [];
-
-  auctionsError = false;
-  loading = false;
-
-  visitedMaplocationUrls: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-  private _unsubscribe = new Subject<void>();
-
-  constructor(
-    private _auctionService: AuctionService,
-  ) { }
-
- 
 
   ngOnInit() {
     this.initMap();
@@ -77,16 +77,16 @@ export class MapComponent implements OnInit {
   }
 
   getLocations() {
-    this.loading = true;
-    this.auctionsError = false;
+    this.loading.set(true);
+    this.auctionsError.set(false);
     this._auctionService.getAuctionLocations(Countrycode.NL).subscribe(result => {
-      this.loading = false;
+      this.loading.set( false);
       this.Auctionlocations = result;
       this.showLocations(result);
       
     }, error => {
-      this.loading = false;
-      this.auctionsError = true;
+      this.loading.set(false);
+      this.auctionsError.set(true);
       console.log(error)
     })
   }
@@ -119,11 +119,12 @@ export class MapComponent implements OnInit {
     let marker = new L.Marker(
       [location.lat, location.long], {
         icon: L.divIcon({
-          html: `${location.numberofauctions}`,
+          html: `${location.numberofauctions} ${this.hasOverlap(location.auctions, this.activeLocation?.auctions)}`,
           className: `
-            marker border border-3 rounded-circle fw-bold text-center
-            ${location.auctions[0].city === 'Nederland' ? 'border-success': 'border-primary'}
-            ${location.auctions.map(m=> m.url).every(ai=> this.visitedMaplocationUrls.value.includes(ai)) ? 'bg-primary text-white': 'bg-light'}
+            marker border-3 fw-bold text-center transition-colors duration-300 ease-out
+            ${location.auctions[0].city === 'Nederland' ? 'border-primary bg-white !text-blue': 'border-blue rounded-full'}
+            ${location.auctions[0].city === 'Nederland'? '':location.auctions.map(m=> m.url).every(ai=> this.visitedMaplocationUrls.value.includes(ai)) ? 'bg-primary-light border-primary': 'bg-white'}
+            ${location !== this.activeLocation && this.hasOverlap(location.auctions, this.activeLocation?.auctions)? 'border-blue-light': '' }
           `,
           iconSize: [25, 25],
          
@@ -132,24 +133,36 @@ export class MapComponent implements OnInit {
       ).addTo(this.map)
       .on('mouseover', event => { event.target.bindPopup(lochtml).openPopup(); })
       .on('mouseout', event => { event.target.closePopup(); })
-
       .on('click', event => {
         if (this.activeElement && this.activeElement._icon){
-          this.activeElement._icon.classList.remove('border-warning');
-          this.activeElement._icon.classList.remove('bg-light');
+          this.activeElement._icon.classList.remove('border-blue');
+          this.activeElement._icon.classList.remove('bg-white');
           this.activeElement._icon.classList.add('bg-primary')
           this.activeElement._icon.classList.add('text-white')
         }
 
         this.activeElement = event.target;
-        event.target._icon.classList.add('border-warning');
+        event.target._icon.classList.add('border-primary');
+
+        this.activeLocation = location;
         this.shownAuctions.emit(location.auctions);
+        this.showLocations(this.Auctionlocations);
         this.addVisitedLocationUrls(location.auctions);
 
       })
 
     this._markers.push(marker);
   }
+
+
+
+  hasOverlap(locationAuctions: Auction[], activeAuctions?: Auction[]):boolean{
+    if(!activeAuctions) return false;
+    console.log(locationAuctions.map(a=> a.url).filter(url => activeAuctions.map(m=> m.url).includes(url)).length>0)
+    return locationAuctions.map(a=> a.url).filter(url => activeAuctions.map(m=> m.url).includes(url)).length>0
+
+  }
+  
 
   addVisitedLocationUrls(auctions: Auction[]){
     const urls = auctions.map(m=> m.url)

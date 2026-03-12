@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { environment } from '../_environments/environment';
 import { Auction, Auctionbrand } from '../_models/auction';
 import { Meta } from '@angular/platform-browser';
@@ -19,7 +19,7 @@ import { MapComponent } from './map/map.component';
 export class AppComponent {
 
   environment = environment
-  shownAuctions: Auction[] = [];
+  shownAuctions = signal<Auction[]>( []);
 
   viewedAuctions: string[] = [];
 
@@ -35,7 +35,6 @@ export class AppComponent {
     private _meta: Meta,
     private _translate: TranslateService,
     public activatedRoute: ActivatedRoute,
-    private _fb: FormBuilder
   ) {
   }
 
@@ -90,7 +89,7 @@ export class AppComponent {
   }
 
   showAuctions(auctions: Auction[]) {
-    this.shownAuctions = auctions.sort((a, b) => new Date(a.closingtime).getTime() - new Date(b.closingtime).getTime())
+    this.shownAuctions.set(auctions.sort((a, b) => new Date(a.closingtime).getTime() - new Date(b.closingtime).getTime()))
 
     setTimeout(() => {
       this.goToBottom()
